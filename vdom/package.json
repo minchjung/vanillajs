@@ -1,0 +1,19 @@
+{
+  "name": "vanila",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "core-js": "^3.21.0",
+    "express": "^4.17.2"
+  }
+}
