@@ -1,0 +1,1 @@
+(()=>{"use strict";document.querySelector("#root").innerHTML="<div>that works</dib>"})();
