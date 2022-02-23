@@ -1,0 +1,47 @@
+{
+  "name": "reactvue",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "homepage": ".",
+  "scripts": {
+    "clear1": "rimraf ../server/public/ssr.js",
+    "clear2": "rimraf ./build",
+    "start1": "node ../server/public/ssr.js",
+    "public1": "npm run clear1 & webpack --config webpack.ssr.js -w",
+    "public2": "clear2 & webpack --config webpack.csr.js",
+    "dev": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "axios": "^0.26.0",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "http-proxy-middleware": "^2.0.3",
+    "jsdom": "^19.0.0",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-fetch": "^3.2.0",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "path-browserify": "^1.0.1",
+    "webpack": "^5.69.1",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "webpack-cli": "^4.9.2"
+  }
+}
