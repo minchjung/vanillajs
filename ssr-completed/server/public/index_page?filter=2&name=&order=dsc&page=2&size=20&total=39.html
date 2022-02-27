@@ -1,0 +1,191 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>window.state={"data":[{"id":92,"title":"title92","writer":"name92","content":"content92","date":"2022-1-92","index":20},{"id":82,"title":"title82","writer":"name82","content":"content82","date":"2022-1-82","index":21},{"id":72,"title":"title72","writer":"name72","content":"content72","date":"2022-1-72","index":22},{"id":62,"title":"title62","writer":"name62","content":"content62","date":"2022-1-62","index":23},{"id":52,"title":"title52","writer":"name52","content":"content52","date":"2022-1-52","index":24},{"id":42,"title":"title42","writer":"name42","content":"content42","date":"2022-1-42","index":25},{"id":32,"title":"title32","writer":"name32","content":"content32","date":"2022-1-32","index":26},{"id":29,"title":"title29","writer":"name29","content":"content29","date":"2022-1-29","index":27},{"id":28,"title":"title28","writer":"name28","content":"content28","date":"2022-1-28","index":28},{"id":27,"title":"title27","writer":"name27","content":"content27","date":"2022-1-27","index":29},{"id":26,"title":"title26","writer":"name26","content":"content26","date":"2022-1-26","index":30},{"id":25,"title":"title25","writer":"name25","content":"content25","date":"2022-1-25","index":31},{"id":24,"title":"title24","writer":"name24","content":"content24","date":"2022-1-24","index":32},{"id":23,"title":"title23","writer":"name23","content":"content23","date":"2022-1-23","index":33},{"id":22,"title":"title22","writer":"name22","content":"content22","date":"2022-1-22","index":34},{"id":21,"title":"title21","writer":"name21","content":"content21","date":"2022-1-21","index":35},{"id":20,"title":"title20","writer":"name20","content":"content20","date":"2022-1-20","index":36},{"id":12,"title":"title12","writer":"name12","content":"content12","date":"2022-1-12","index":37},{"id":2,"title":"title2","writer":"name2","content":"content2","date":"2022-1-2","index":38}],"page":"2","size":"20","order":"dsc","filter":"2","name":"","total":39}</script>
+</head>
+<body>
+  <div id='root'>
+    
+      <div id=app>
+        
+      <div id=postlistpage>
+        
+      <div id=postlistheader>
+        
+    <div data-component="search" id="search">
+      <input 
+        data-action='searchInput' 
+        placeholder="search" 
+        type="text" 
+        value=2>
+      <button data-action='searchBtn'>검색</button>
+    </div>
+  
+      <div data-component=paging id="paging">
+        <label for="pagination" value=20>페이지</label>
+          <select data-action ="page">
+          <option value=5 >5</option>
+          <option value=10 >10</option>
+          <option value=20 selected>20</option>
+        </select>
+      </div>
+    
+    <div data-component='sorting' id="sorting">
+      <label for="sorting">날짜정렬</label>
+      <select data-action="order">
+        <option 
+            name='order' value="dsc" 
+            selected>최신</option>
+        <option 
+            name='order' value="asc"
+            >예전</option>
+      </select>
+    </div>
+      <button id="sortbutton">초기화</button>
+    
+      <button id="refreshall">새로고침</button>
+    
+      </div>
+    
+    <div id='postlist'>
+        
+          <ul data-index=0>  
+            <li id= 92>92</li>
+            <li data-action='title'>title92</li>
+            <li data-action='writer'>name92</li>
+            <li>2022-1-92</li>
+          </ul>
+          <ul data-index=1>  
+            <li id= 82>82</li>
+            <li data-action='title'>title82</li>
+            <li data-action='writer'>name82</li>
+            <li>2022-1-82</li>
+          </ul>
+          <ul data-index=2>  
+            <li id= 72>72</li>
+            <li data-action='title'>title72</li>
+            <li data-action='writer'>name72</li>
+            <li>2022-1-72</li>
+          </ul>
+          <ul data-index=3>  
+            <li id= 62>62</li>
+            <li data-action='title'>title62</li>
+            <li data-action='writer'>name62</li>
+            <li>2022-1-62</li>
+          </ul>
+          <ul data-index=4>  
+            <li id= 52>52</li>
+            <li data-action='title'>title52</li>
+            <li data-action='writer'>name52</li>
+            <li>2022-1-52</li>
+          </ul>
+          <ul data-index=5>  
+            <li id= 42>42</li>
+            <li data-action='title'>title42</li>
+            <li data-action='writer'>name42</li>
+            <li>2022-1-42</li>
+          </ul>
+          <ul data-index=6>  
+            <li id= 32>32</li>
+            <li data-action='title'>title32</li>
+            <li data-action='writer'>name32</li>
+            <li>2022-1-32</li>
+          </ul>
+          <ul data-index=7>  
+            <li id= 29>29</li>
+            <li data-action='title'>title29</li>
+            <li data-action='writer'>name29</li>
+            <li>2022-1-29</li>
+          </ul>
+          <ul data-index=8>  
+            <li id= 28>28</li>
+            <li data-action='title'>title28</li>
+            <li data-action='writer'>name28</li>
+            <li>2022-1-28</li>
+          </ul>
+          <ul data-index=9>  
+            <li id= 27>27</li>
+            <li data-action='title'>title27</li>
+            <li data-action='writer'>name27</li>
+            <li>2022-1-27</li>
+          </ul>
+          <ul data-index=10>  
+            <li id= 26>26</li>
+            <li data-action='title'>title26</li>
+            <li data-action='writer'>name26</li>
+            <li>2022-1-26</li>
+          </ul>
+          <ul data-index=11>  
+            <li id= 25>25</li>
+            <li data-action='title'>title25</li>
+            <li data-action='writer'>name25</li>
+            <li>2022-1-25</li>
+          </ul>
+          <ul data-index=12>  
+            <li id= 24>24</li>
+            <li data-action='title'>title24</li>
+            <li data-action='writer'>name24</li>
+            <li>2022-1-24</li>
+          </ul>
+          <ul data-index=13>  
+            <li id= 23>23</li>
+            <li data-action='title'>title23</li>
+            <li data-action='writer'>name23</li>
+            <li>2022-1-23</li>
+          </ul>
+          <ul data-index=14>  
+            <li id= 22>22</li>
+            <li data-action='title'>title22</li>
+            <li data-action='writer'>name22</li>
+            <li>2022-1-22</li>
+          </ul>
+          <ul data-index=15>  
+            <li id= 21>21</li>
+            <li data-action='title'>title21</li>
+            <li data-action='writer'>name21</li>
+            <li>2022-1-21</li>
+          </ul>
+          <ul data-index=16>  
+            <li id= 20>20</li>
+            <li data-action='title'>title20</li>
+            <li data-action='writer'>name20</li>
+            <li>2022-1-20</li>
+          </ul>
+          <ul data-index=17>  
+            <li id= 12>12</li>
+            <li data-action='title'>title12</li>
+            <li data-action='writer'>name12</li>
+            <li>2022-1-12</li>
+          </ul>
+          <ul data-index=18>  
+            <li id= 2>2</li>
+            <li data-action='title'>title2</li>
+            <li data-action='writer'>name2</li>
+            <li>2022-1-2</li>
+          </ul>
+      </div>
+      <div id=pagination>
+      
+      <button data-action="less">이전</button>
+      
+      <span class="none-display">"마지막 페이지 입니다"</span>
+      </div>
+    
+      <div id=postbutton>
+        <button>작성</button>
+      </div>
+    
+      </div>
+    
+      </div>
+     
+  </div>
+  <script src="./csr.js"></script>
+</body>
+</html>
+  

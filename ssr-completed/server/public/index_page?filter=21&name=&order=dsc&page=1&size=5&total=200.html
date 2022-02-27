@@ -1,0 +1,89 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>window.state={"data":[{"id":121,"title":"title121","writer":"name121","content":"content121","date":"2022-1-121","index":0},{"id":21,"title":"title21","writer":"name21","content":"content21","date":"2022-1-21","index":1}],"page":"1","size":"5","order":"dsc","filter":"21","name":"","total":2}</script>
+</head>
+<body>
+  <div id='root'>
+    
+      <div id=app>
+        
+      <div id=postlistpage>
+        
+      <div id=postlistheader>
+        
+    <div data-component="search" id="search">
+      <input 
+        data-action='searchInput' 
+        placeholder="search" 
+        type="text" 
+        value=21>
+      <button data-action='searchBtn'>검색</button>
+    </div>
+  
+      <div data-component=paging id="paging">
+        <label for="pagination" value=5>페이지</label>
+          <select data-action ="page">
+          <option value=5 selected>5</option>
+          <option value=10 >10</option>
+          <option value=20 >20</option>
+        </select>
+      </div>
+    
+    <div data-component='sorting' id="sorting">
+      <label for="sorting">날짜정렬</label>
+      <select data-action="order">
+        <option 
+            name='order' value="dsc" 
+            selected>최신</option>
+        <option 
+            name='order' value="asc"
+            >예전</option>
+      </select>
+    </div>
+      <button id="sortbutton">초기화</button>
+    
+      <button id="refreshall">새로고침</button>
+    
+      </div>
+    
+    <div id='postlist'>
+        
+          <ul data-index=0>  
+            <li id= 121>121</li>
+            <li data-action='title'>title121</li>
+            <li data-action='writer'>name121</li>
+            <li>2022-1-121</li>
+          </ul>
+          <ul data-index=1>  
+            <li id= 21>21</li>
+            <li data-action='title'>title21</li>
+            <li data-action='writer'>name21</li>
+            <li>2022-1-21</li>
+          </ul>
+      </div>
+      <div id=pagination>
+      
+      
+      
+      <span class="none-display">"마지막 페이지 입니다"</span>
+      </div>
+    
+      <div id=postbutton>
+        <button>작성</button>
+      </div>
+    
+      </div>
+    
+      </div>
+     
+  </div>
+  <script src="./csr.js"></script>
+</body>
+</html>
+  

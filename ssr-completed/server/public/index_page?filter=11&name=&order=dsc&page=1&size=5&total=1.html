@@ -1,0 +1,107 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>window.state={"data":[{"id":119,"title":"title119","writer":"name119","content":"content119","date":"2022-1-119","index":0},{"id":118,"title":"title118","writer":"name118","content":"content118","date":"2022-1-118","index":1},{"id":117,"title":"title117","writer":"name117","content":"content117","date":"2022-1-117","index":2},{"id":116,"title":"title116","writer":"name116","content":"content116","date":"2022-1-116","index":3},{"id":115,"title":"title115","writer":"name115","content":"content115","date":"2022-1-115","index":4}],"page":"1","size":"5","order":"dsc","filter":"11","name":"","total":11}</script>
+</head>
+<body>
+  <div id='root'>
+    
+      <div id=app>
+        
+      <div id=postlistpage>
+        
+      <div id=postlistheader>
+        
+    <div data-component="search" id="search">
+      <input 
+        data-action='searchInput' 
+        placeholder="search" 
+        type="text" 
+        value=11>
+      <button data-action='searchBtn'>검색</button>
+    </div>
+  
+      <div data-component=paging id="paging">
+        <label for="pagination" value=5>페이지</label>
+          <select data-action ="page">
+          <option value=5 selected>5</option>
+          <option value=10 >10</option>
+          <option value=20 >20</option>
+        </select>
+      </div>
+    
+    <div data-component='sorting' id="sorting">
+      <label for="sorting">날짜정렬</label>
+      <select data-action="order">
+        <option 
+            name='order' value="dsc" 
+            selected>최신</option>
+        <option 
+            name='order' value="asc"
+            >예전</option>
+      </select>
+    </div>
+      <button id="sortbutton">초기화</button>
+    
+      <button id="refreshall">새로고침</button>
+    
+      </div>
+    
+    <div id='postlist'>
+        
+          <ul data-index=0>  
+            <li id= 119>119</li>
+            <li data-action='title'>title119</li>
+            <li data-action='writer'>name119</li>
+            <li>2022-1-119</li>
+          </ul>
+          <ul data-index=1>  
+            <li id= 118>118</li>
+            <li data-action='title'>title118</li>
+            <li data-action='writer'>name118</li>
+            <li>2022-1-118</li>
+          </ul>
+          <ul data-index=2>  
+            <li id= 117>117</li>
+            <li data-action='title'>title117</li>
+            <li data-action='writer'>name117</li>
+            <li>2022-1-117</li>
+          </ul>
+          <ul data-index=3>  
+            <li id= 116>116</li>
+            <li data-action='title'>title116</li>
+            <li data-action='writer'>name116</li>
+            <li>2022-1-116</li>
+          </ul>
+          <ul data-index=4>  
+            <li id= 115>115</li>
+            <li data-action='title'>title115</li>
+            <li data-action='writer'>name115</li>
+            <li>2022-1-115</li>
+          </ul>
+      </div>
+      <div id=pagination>
+      
+      
+      <button data-action="more">더보기</button>
+      
+      </div>
+    
+      <div id=postbutton>
+        <button>작성</button>
+      </div>
+    
+      </div>
+    
+      </div>
+     
+  </div>
+  <script src="./csr.js"></script>
+</body>
+</html>
+  

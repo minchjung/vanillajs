@@ -1,0 +1,137 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>window.state={"data":[{"id":179,"title":"title179","writer":"name179","content":"content179","date":"2022-1-179","index":20},{"id":178,"title":"title178","writer":"name178","content":"content178","date":"2022-1-178","index":21},{"id":177,"title":"title177","writer":"name177","content":"content177","date":"2022-1-177","index":22},{"id":176,"title":"title176","writer":"name176","content":"content176","date":"2022-1-176","index":23},{"id":175,"title":"title175","writer":"name175","content":"content175","date":"2022-1-175","index":24},{"id":174,"title":"title174","writer":"name174","content":"content174","date":"2022-1-174","index":25},{"id":173,"title":"title173","writer":"name173","content":"content173","date":"2022-1-173","index":26},{"id":172,"title":"title172","writer":"name172","content":"content172","date":"2022-1-172","index":27},{"id":171,"title":"title171","writer":"name171","content":"content171","date":"2022-1-171","index":28},{"id":170,"title":"title170","writer":"name170","content":"content170","date":"2022-1-170","index":29}],"page":"3","size":"10","order":"dsc","filter":"1","name":"","total":119}</script>
+</head>
+<body>
+  <div id='root'>
+    
+      <div id=app>
+        
+      <div id=postlistpage>
+        
+      <div id=postlistheader>
+        
+    <div data-component="search" id="search">
+      <input 
+        data-action='searchInput' 
+        placeholder="search" 
+        type="text" 
+        value=1>
+      <button data-action='searchBtn'>검색</button>
+    </div>
+  
+      <div data-component=paging id="paging">
+        <label for="pagination" value=10>페이지</label>
+          <select data-action ="page">
+          <option value=5 >5</option>
+          <option value=10 selected>10</option>
+          <option value=20 >20</option>
+        </select>
+      </div>
+    
+    <div data-component='sorting' id="sorting">
+      <label for="sorting">날짜정렬</label>
+      <select data-action="order">
+        <option 
+            name='order' value="dsc" 
+            selected>최신</option>
+        <option 
+            name='order' value="asc"
+            >예전</option>
+      </select>
+    </div>
+      <button id="sortbutton">초기화</button>
+    
+      <button id="refreshall">새로고침</button>
+    
+      </div>
+    
+    <div id='postlist'>
+        
+          <ul data-index=0>  
+            <li id= 179>179</li>
+            <li data-action='title'>title179</li>
+            <li data-action='writer'>name179</li>
+            <li>2022-1-179</li>
+          </ul>
+          <ul data-index=1>  
+            <li id= 178>178</li>
+            <li data-action='title'>title178</li>
+            <li data-action='writer'>name178</li>
+            <li>2022-1-178</li>
+          </ul>
+          <ul data-index=2>  
+            <li id= 177>177</li>
+            <li data-action='title'>title177</li>
+            <li data-action='writer'>name177</li>
+            <li>2022-1-177</li>
+          </ul>
+          <ul data-index=3>  
+            <li id= 176>176</li>
+            <li data-action='title'>title176</li>
+            <li data-action='writer'>name176</li>
+            <li>2022-1-176</li>
+          </ul>
+          <ul data-index=4>  
+            <li id= 175>175</li>
+            <li data-action='title'>title175</li>
+            <li data-action='writer'>name175</li>
+            <li>2022-1-175</li>
+          </ul>
+          <ul data-index=5>  
+            <li id= 174>174</li>
+            <li data-action='title'>title174</li>
+            <li data-action='writer'>name174</li>
+            <li>2022-1-174</li>
+          </ul>
+          <ul data-index=6>  
+            <li id= 173>173</li>
+            <li data-action='title'>title173</li>
+            <li data-action='writer'>name173</li>
+            <li>2022-1-173</li>
+          </ul>
+          <ul data-index=7>  
+            <li id= 172>172</li>
+            <li data-action='title'>title172</li>
+            <li data-action='writer'>name172</li>
+            <li>2022-1-172</li>
+          </ul>
+          <ul data-index=8>  
+            <li id= 171>171</li>
+            <li data-action='title'>title171</li>
+            <li data-action='writer'>name171</li>
+            <li>2022-1-171</li>
+          </ul>
+          <ul data-index=9>  
+            <li id= 170>170</li>
+            <li data-action='title'>title170</li>
+            <li data-action='writer'>name170</li>
+            <li>2022-1-170</li>
+          </ul>
+      </div>
+      <div id=pagination>
+      
+      <button data-action="less">이전</button>
+      <button data-action="more">더보기</button>
+      
+      </div>
+    
+      <div id=postbutton>
+        <button>작성</button>
+      </div>
+    
+      </div>
+    
+      </div>
+     
+  </div>
+  <script src="./csr.js"></script>
+</body>
+</html>
+  
