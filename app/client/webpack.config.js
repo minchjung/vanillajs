@@ -1,63 +1,111 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const webpackNodeExternals = require('webpack-node-externals');
+const fs = require('fs')
+const mode = process.env.NODE_ENV;
+
+const output1 =  {
+    path: path.join(__dirname, '../server/public'),
+    filename: 'ssr.js',
+    publicPath : "/",
+    library : 'SSR',
+    libraryTarget:'commonjs2',
+    umdNamedDefine: true,
+  
+ }
+ const output2 = {
+   path: path.join(__dirname, './public'),
+   filename : 'csr.js',
+   publicPath : "/"
+ }
+ let count = 0;
+ const setDevServer = { 
+  port : 8080,
+  proxy : {
+    "/**" : {
+      target: "http://[::1]:3001",
+      changeOrigin: true,
+      secure: false,
+      onProxyReq: async function(proxyReq, req, res){
+        if(req.url.includes('api')) return 
+
+        const fileURL = req.url === '/' 
+          ? 'index_page?filter=&name=&order=dsc&page=1&size=5&total=200.html'
+          : 'index_' + req.url.split('/')[1] + '.html'
+        
+        const dirURL = path.resolve(__dirname, './resources/', fileURL);
+        console.log(dirURL, 'count===================',count++)
+        if(fs.existsSync(dirURL)){
+          console.log('html good');
+          const html = await fs.readFileSync(dirURL, 'utf-8');
+          
+          return res.status(202).send(html);
+        }       
+      }
+    },
+
+  }
+ }
+
+const setDevServer2 = {
+  port : 8081 
+}
 
 module.exports = {
-  mode: 'production',
+    mode,
 
-  target: 'web',
+    target: mode === 'production' ? 'node' : 'web', 
     
-  entry: { index : './src/main.js'},
+    entry: mode === 'production' ? './ssr.js' : './csr.js', 
     
-  output: {
-        filename: 'main.js',
-        path: path.join(__dirname, '../server/public'),
-        publicPath : "/"
-  },
-  module: {
-      rules: [
-      { 
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: { 
-            presets: [ 
-              [ '@babel/preset-env', 
-                { useBuiltIns: "usage", corejs:{ version : 3 } }
-              ],
-            ],
-            plugins : [ 
-                "@babel/plugin-proposal-object-rest-spread",
-                "@babel/plugin-proposal-class-properties",
-                "@babel/plugin-transform-modules-commonjs"
-              ]
-          }
-        },
+    output : mode === 'production' ? output1 : output2,
+    
+    externals: mode === 'production' ? [webpackNodeExternals()] : '', 
+
+    module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude : [
+              mode === 'production' 
+              ? path.resolve(__dirname, 'csr.js') 
+              : path.resolve(__dirname, 'ssr.js')
+            ]
+          },
+        // { 
+        //   test: /\.js$/,
+        //   exclude: /node_modules/,
+        //   loader: 'babel-loader',
+        //   options: { 
+        //       presets: [ 
+        //         [ '@babel/preset-env', 
+        //           { useBuiltIns: "usage", corejs:{ version : 3 } }
+        //         ],
+        //       ],
+        //       plugins : [ 
+        //           "@babel/plugin-proposal-object-rest-spread",
+        //           "@babel/plugin-proposal-class-properties",
+        //           "@babel/plugin-transform-modules-commonjs"
+        //         ]
+        //   }
+        // }
       ],
     },
-  
-  
-  plugins: [
-      new HtmlWebpackPlugin({
-          template: './src/index.html',
-          filename: 'ssr-index.html'
-      }),
-      new CleanWebpackPlugin(),
-      new NodePolyfillPlugin(),
-  ],
-  devServer: {
-    port : 8080,
-    liveReload : true
-    // proxy : {
-    //     "/api/*" : {
-    //       target: "http://[::1]:4000"
-    //     }
-    //   },
-  },
+
+  //  plugins: [
+  //     new HtmlWebpackPlugin({
+  //         template: './src/index.html',
+  //         filename:'index.html'
+  //     }),
+  //     new CleanWebpackPlugin(),
+  //     new NodePolyfillPlugin(),
+  // ],
+  devServer: mode === 'production' ? setDevServer2 : setDevServer,
   resolve : {
     fallback : { 
       "fs" : false
     }
-  }
-}
+  },
+  devtool : 'source-map'
+
+
+};

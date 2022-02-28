@@ -1,15 +1,16 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const webpack = require('webpack')
 module.exports = {
     mode : "development",
 
     target: 'node', 
 
-    entry: './src/server.js',
+    entry: './server.js',
 
     output: { 
-        path: path.join(__dirname, './build'), 
+        path: path.join(__dirname, './public'), 
         filename: 'server.js',
     },
 
@@ -33,9 +34,20 @@ module.exports = {
                 ]
             }
           },
+          {
+            test: /\.json$/,
+            loader: 'json-loader'
+          }
+
         ],
       },
-  plugins : [ new NodePolyfillPlugin() ],
-
+  plugins : [ new NodePolyfillPlugin(),
+    new webpack.BannerPlugin({
+      banner: 'require("source-map-support").install();',
+      raw: true,
+      entryOnly: false
+    })
+  ],
+  devtool : 'source-map'
 
 };

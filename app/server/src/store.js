@@ -1,15 +1,15 @@
-import Store from "./core/Store.js";
-import { dbTotalData } from './db/data.js'
+const { initialState } = require("./Data");
 
-const initialState = {
-  data : dbTotalData.slice().reverse().slice(0,5),
-  page : 1,
-  size : 5, 
-  order : 'dsc',
-  filter : '',
-  name : '',
-  total : 1,
+class ServerStore{
+  state; 
+  constructor(state){
+    this.state = state;
+  }
+  setState(newState){
+    this.state = { ...this.state, ...newState }
+  }
 }
 
-const store = new Store(initialState)
-export default store
+
+
+module.exports = new ServerStore(initialState);
