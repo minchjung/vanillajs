@@ -15,7 +15,7 @@ Creating SSR and CSR
 # 3. Test 환경 
 ..
 
-# * 기본: webpack 번들링, babel 설정 (-jsx 필요시만 필요!)
+# * 기본: webpack 번들링, babel 설정 (-jsx 필요시만!)
 1. webpack 기본 설정 
 2. webpack plugin 활용
 3. webpack dev server 활용 
