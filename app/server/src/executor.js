@@ -1,4 +1,17 @@
-const { totData }= require('./Data.js')
+let tem = require('./Data.js')
+let totData = tem; 
+
+let initialState = {
+  data : totData.slice().reverse().slice(0,5),
+  page : 1,
+  size : 5, 
+  order : 'dsc',
+  filter : '',
+  name : '',
+  total : totData.length,
+  index : 0
+}
+
 // ---- Query executor ---- 
 const queryExecutor = {
 
@@ -88,9 +101,44 @@ module.exports = {
   },
   getPathURL : (state) => {
     const { filter, name, order, data, total, page, size } = state
-    const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
+    const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}`
     
     return id
+  },
+
+  updatePost : ( { writer, title , content, id } )=>{
+    // console.log("id===========", id)
+    totData = totData.map( ele => {
+
+      if( Number(ele.id) === Number(id) ) {
+        ele.writer = writer; 
+        ele.title = title
+        ele.content = content;
+      }
+      return ele
+    })
+    // console.log(totData[ totData.length-1 ])
+    return totData 
+  },
+
+  createPost : ( { writer, title, content } ) =>{
+    const id = totData[totData.length -1].id + 1;
+    totData.push({
+      id, writer, title, content, date: new Date().toISOString()
+    })
+    return totData
+  },
+
+  deletePost : ( id ) => {
+    for(let i = 0 ; i < totData.length ; i++){
+      if( totData[i].id === Number(id) ) totData.splice(i,1);
+    }
+    return totData;
+  }
+  ,
+  getInitialState : () => {
+    initialState.data = totData.slice().reverse().slice(0,5)
+    return initialState
   }
 
 }

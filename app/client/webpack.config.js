@@ -17,27 +17,51 @@ const output1 =  {
    filename : 'csr.js',
    publicPath : "/"
  }
- let count = 0;
+
  const setDevServer = { 
+
   port : 8080,
   proxy : {
     "/**" : {
       target: "http://[::1]:3001",
       changeOrigin: true,
       secure: false,
-      onProxyReq: async function(proxyReq, req, res){
-        if(req.url.includes('api')) return 
 
-        const fileURL = req.url === '/' 
-          ? 'index_page?filter=&name=&order=dsc&page=1&size=5&total=200.html'
-          : 'index_' + req.url.split('/')[1] + '.html'
-        
-        const dirURL = path.resolve(__dirname, './resources/', fileURL);
-        console.log(dirURL, 'count===================',count++)
-        if(fs.existsSync(dirURL)){
-          console.log('html good');
-          const html = await fs.readFileSync(dirURL, 'utf-8');
+      onProxyReq: async function(proxyReq, req, res){
+
+        if(String(req.method )=== 'POST' || req.method === 'DELETE'){
+          const resources = path.resolve(__dirname, './resources');
           
+          if(fs.existsSync(resources)){
+            
+            fs.rm( resources, { recursive : true }, async (err) => {
+              if(err) return console.log('error to delete direct resoucers',err);
+              console.log('delete success from =', req.method)
+              
+              await fs.mkdirSync( resources , (err) => {
+                if(err) return console.log('error to mkdir direct', err);
+              });
+            });
+          }
+        }
+
+        if(req.url.includes('api')) return 
+        if(req.url.includes('single')) return 
+
+        const fileURL =  'index_' + req.url.split('/')[1] + '.html'
+        const dirURL = path.resolve(__dirname, './resources/', fileURL);
+
+        if(req.url.includes('/post-edit')){
+          const notFOUND = path.resolve(__dirname, './public/', 'notfound.html')
+
+          if(fs.existsSync(notFOUND)){
+            const html = await fs.readFileSync(notFOUND, 'utf-8');
+            return res.status(202).send(html);
+          }
+        }
+
+        if(fs.existsSync(dirURL)){
+          const html = await fs.readFileSync(dirURL, 'utf-8');
           return res.status(202).send(html);
         }       
       }
@@ -70,6 +94,25 @@ module.exports = {
               ? path.resolve(__dirname, 'csr.js') 
               : path.resolve(__dirname, 'ssr.js')
             ]
+          },
+          {
+            test: /\.css$/,
+            use: [
+              "style-loader",
+              {
+                loader: "css-loader",
+                options: {
+                  importLoaders: 1,
+                  modules: true,
+                },
+              },
+            ],
+            include: /\.module\.css$/,
+          },
+          {
+            test: /\.css$/,
+            use: ["style-loader", "css-loader"],
+            exclude: /\.module\.css$/,
           },
         // { 
         //   test: /\.js$/,

@@ -16,95 +16,103 @@ export class PostEditPage extends Component{
 }
 
 
-export class Header extends Component{
-  
-
-  template(){
-    const index =(router.routeState.value) 
-    console.log(index)
-    const { data } = store.state 
-    return `
-      <header id="header">
-        <div>
-          <span>제목</span>
-          <span>작성자</span>
-        </div>
-        <div>
-          <input 
-            data-action='title'
-            type='text'
-            value=${ index ? data[Number(index)].title  : ""}
-            >
-          <input
-            data-action='writer'
-            type='text'
-            value=${ index ? data[Number(index)].writer : ""}
-          >
-        </div>
-      </header>
-    `
-  }
-
-}
 
 export class Contents extends Component{
 
   setEvent(){
-    this.el.removeEventListener("click", this.firstBonder)
-    this.el.addEventListener("click", this.firstBonder)
+    this.el.querySelector('#form').removeEventListener("submit", this.firstBonder)
+    this.el.querySelector('#form').addEventListener("submit", this.firstBonder)
   }
   
-  eventHandler({ target }){
+  async eventHandler(e){
+    e.preventDefault();
 
+    let payload = {};
+    e.target.querySelectorAll('input').forEach(ele => {
+      payload[ele.name] = ele.value
+    });
+
+    payload.content = e.target.querySelector('textarea').value;
+
+    // console.log(payload)
+    const result = await fetch( '/post/edit', {
+      method : 'post',
+      headers : { 'content-type' : 'application/json' },
+      body : JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    
+    if(!result) return alert("일시적 오류 발생")
+    
+
+    store.cacheHandler.clearCache(result);
+    
+    let routerId = router.index 
+    if(location.search === '?new') routerId= result.data[0].id 
+
+    router.setIndex(routerId)
+    router.setPathCur('/post-single');
+
+    history.replaceState(
+      { state : result }, 
+      '', 
+      window.origin + '/post-single?index=' + router.index 
+      )
+
+  
   }
   template(){
-    const index = (router.routeState.value)
-    const { data } = store.state
+    let index, data;
+    if(location.search !== '?new'){
+      index = router.index
+      data = store.state.data.filter(ele => ele.id  === Number(index))[0]
+
+    }
+    else data = null; 
+
     return `
       <div id="contents">
-        <p> 제 목
-          <input 
-          data-action='title'
-          type='text'
-          value=${ index ? data[Number(index)].title  : ""}
-          >
-        </p>
-        <p> 작성자
-          <input
-          data-action='writer'
-          type='text'
-          value=${ index ? data[Number(index)].writer : ""}
-          >
-        </p>
-        <p>
-        <textarea cols="50" rows="20">${index ? data[Number(index)].content : "" }</textarea>
-        </p>
-        <input data-action='submit' type='submit'>
+        <form action='/api/post' method='post' id='form'>
+          <fieldset>
+            <p name=${data ? data.id: ""}> 제 목
+              <input 
+              data-action='title'
+              type='text',
+              name = 'title'
+              value=${ data ? data.title : ""}
+              >
+            </p>
+            <p> 작성자
+              <input
+              data-action='writer'
+              type='text'
+              name='writer'
+              value=${ data? data.writer : ""}
+              >
+            </p> 
+            <textarea data-action = 'contents' cols="50" rows="20" name ='content'>${ data ? data.content : ""}</textarea>
+            <input style="display:none;" name=id value = ${ data ? data.id : ""} >
+            <button data-action='submit'>제출</button>
+          </fieldset>
+        </form>
       </div>
     `;  
   }
   
 }
-
-export class BottomButton extends Component{
-  
-
-  setEvent(){
-    this.el.removeEventListener("click", this.firstBonder)
-    this.el.addEventListener("click", this.firstBonder)
-  }
-  
-  eventHandler({ target }){
-
-  }
-
-
-  template(){
-    return `
-      <div id="bottombutton">
-        <button >작성완료</button>
-      </div>
-    `;
-  }
-
-}
+{/* 
+<p> 제 목
+<input 
+data-action='title'
+type='text'
+value=${ index ? data[Number(index)].title  : ""}
+>
+</p>
+<p> 작성자
+<input
+data-action='writer'
+type='text'
+value=${ index ? data[Number(index)].writer : ""}
+>
+</p> 
+*/}

@@ -3,21 +3,23 @@ const express = require('express');
 const cors = require('cors')
 const fs =require('fs');
 const path = require('path')
-
 const server = express(); 
 const PORT = 3001;
 
-const { updateStateByQueryExecutor, getPathURL} = require('./src/executor.js')
 const getStringHtml = require('./src/ssr.service.js');
-const store = require('./src/store.js');
-const { initialState } = require('./src/Data')
+const { store } = require('./src/store.js');
+const { 
+  updateStateByQueryExecutor, 
+  getPathURL, getInitialState, 
+  updatePost, createPost, deletePost, 
+} = require('./src/executor.js')
 
 server.options('*', cors());
 server.use(express.json())
+server.use(express.urlencoded({ extended : true }))
 server.use(express.static(path.resolve(__dirname, 'public')));
 
 const updateCache = (req, res) => {
-  console.log('cache update comming to here', req.query)
   if(!req.query) return res.status(400).end();
 
   store.setState(updateStateByQueryExecutor(req.query));
@@ -29,50 +31,80 @@ const updateCache = (req, res) => {
 const updateState = async (req, res)=> {
   if( !req.body ) return res.status(400).end(); 
   store.setState(req.body)
-  console.log('comming to /api/state')
   return res.status(203).end();
 }
 
-
 server.get('/', async (req, res) => {
-  console.log(req.query)
-  console.log('comming to basic path')
-  store.setState(initialState) 
+  store.setState(getInitialState()) 
+  // console.log('초반', store.state)
   const redirectTo = `/page?` + getPathURL(store.state);
  
   return res.redirect(redirectTo)  ;
 })
 
 server.get('/page', async (req, res) => {
-  console.log('comming to server page not passed by bypass let me see what ')
+
+  if( !store.state ) store.setState(getInitialState())
+  // console.log('페이지', store.state)
   const filePath = 'page?' + getPathURL(req.query)
   const fileURL = path.resolve(__dirname,'../../client/resources' , 'index_'+ filePath +'.html');
   let html ;
     if(!fs.existsSync(fileURL)){
-      html = await getStringHtml({ url : '/', state : store.state })
+      html = await getStringHtml({ url : '/', state : store.state, index : 0 })
       await fs.writeFileSync(fileURL, html);
-      console.log('file not exists', fileURL)
     }
     else{
       html = await fs.readFileSync(fileURL, 'utf-8');
-      console.log('fileexists', fileURL)
     }
 
   return res.send(html)
 })
 
 server.get('/post-single', async (req, res) => {
-  console.log(req.url)
-  console.log(req.query);
-  console.log(store.state)
-  
-  const result = await getStringHtml({ url : '/post-single', state : store.state } )
-  console.log(result)
-  res.send(result)
+  const { index } = req.query; 
+  const result = await getStringHtml({ url : '/post-single', state : store.state, index } )
+
+  return res.send(result)
 })
 
 server.get('/api/cache', updateCache);
 server.put('/api/state', updateState);
+
+
+server.post('/post/edit', (req, res) => {
+  if(req.body.id === ''){ 
+    if(!createPost(req.body) ) 
+      return res.status(500).send('Internal server error');
+
+    store.setState( updateStateByQueryExecutor(
+      { filter : "", order : 'dsc', name : "",  page : 1, size : 5 }
+      )
+    )
+    return res.json(store.state)
+  }
+
+  if( !updatePost(req.body)) 
+    return res.status(500).send('Internal server error');
+
+  const name = store.state.name !== '' ? req.body.writer : '';
+  store.setState({ name })
+  store.setState( updateStateByQueryExecutor(store.state) );
+
+  return res.json(store.state)
+})
+
+server.delete('/post/delete', (req,res) => {
+
+  // console.log('asdfasdf deltete', store.state)
+  if( !deletePost(req.query.id) ) 
+    return res.status(500).send("Internal server error");
+  
+  store.setState( updateStateByQueryExecutor(
+    { filter : "", order : 'dsc', name : "",  page : 1, size : 5 }
+  ));
+  
+  return res.status(202).json(store.state);
+})
 
 
 server.listen(PORT, ()=> {

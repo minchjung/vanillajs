@@ -9,7 +9,6 @@ require("source-map-support").install();
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -70,6 +69,10 @@ __webpack_require__(/*! core-js/modules/es.array.filter.js */ "core-js/modules/e
 
 __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "core-js/modules/es.number.constructor.js");
 
+__webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "core-js/modules/es.regexp.exec.js");
+
+__webpack_require__(/*! core-js/modules/es.string.split.js */ "core-js/modules/es.string.split.js");
+
 __webpack_require__(/*! core-js/modules/es.promise.js */ "core-js/modules/es.promise.js");
 
 __webpack_require__(/*! core-js/modules/es.object.keys.js */ "core-js/modules/es.object.keys.js");
@@ -108,11 +111,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   "use strict";
 
   var t = {
-    d: function d(e, s) {
-      for (var n in s) {
-        t.o(s, n) && !t.o(e, n) && Object.defineProperty(e, n, {
+    d: function d(e, n) {
+      for (var s in n) {
+        t.o(n, s) && !t.o(e, s) && Object.defineProperty(e, s, {
           enumerable: !0,
-          get: s[n]
+          get: n[s]
         });
       }
     },
@@ -130,16 +133,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       e = {};
   t.r(e), t.d(e, {
     ssr_converter: function ssr_converter() {
-      return $;
+      return w;
     }
   });
 
-  var s = /*#__PURE__*/function () {
-    function s(_ref) {
+  var n = /*#__PURE__*/function () {
+    function n(_ref) {
       var t = _ref.name,
           e = _ref.state;
 
-      _classCallCheck(this, s);
+      _classCallCheck(this, n);
 
       _defineProperty(this, "el", void 0);
 
@@ -164,7 +167,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.components = [], this.child = [], this.name = t, this.state = e, this.curPos = 0, this.oldPos = 0, this.firstBonder = this.eventHandler.bind(this), this.secondBonder = this.secondEventHandler.bind(this);
     }
 
-    _createClass(s, [{
+    _createClass(n, [{
       key: "setState",
       value: function setState(t) {
         this.state = t, this.components.length > 0 && this.components[this.curPos].setState(t), this.child.length > 0 && this.child.map(function (e) {
@@ -200,29 +203,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       value: function render() {
         var _this = this;
 
-        this.el.innerHtml;
-        var t = this.template();
-        this.el.innerHTML = t, requestAnimationFrame(function () {
+        this.el.innerHTML = this.template(), requestAnimationFrame(function () {
           return _this.setRoot();
         });
       }
     }]);
 
-    return s;
+    return n;
   }();
 
-  var n = /*#__PURE__*/function (_s) {
-    _inherits(n, _s);
+  var s = /*#__PURE__*/function (_n) {
+    _inherits(s, _n);
 
-    var _super = _createSuper(n);
+    var _super = _createSuper(s);
 
-    function n(_ref2) {
+    function s(_ref2) {
       var _this2;
 
       var t = _ref2.name,
           e = _ref2.state;
 
-      _classCallCheck(this, n);
+      _classCallCheck(this, s);
 
       _this2 = _super.call(this, {
         name: t,
@@ -230,24 +231,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }), _this2.child = [], _this2.child.push(new a({
         name: "postlistheader",
         state: e
-      })), _this2.child.push(new c({
+      })), _this2.child.push(new l({
         name: "postlist",
         state: e
-      })), _this2.child.push(new p({
-        name: "pagination",
-        state: e
-      })), _this2.child.push(new d({
-        name: "postbutton",
+      })), _this2.child.push(new h({
+        name: "pagebutton",
         state: e
       }));
       return _this2;
     }
 
-    return _createClass(n);
-  }(s);
+    return _createClass(s);
+  }(n);
 
-  var a = /*#__PURE__*/function (_s2) {
-    _inherits(a, _s2);
+  var a = /*#__PURE__*/function (_n2) {
+    _inherits(a, _n2);
 
     var _super2 = _createSuper(a);
 
@@ -271,21 +269,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })), _this3.child.push(new r({
         name: "sorting",
         state: e
-      })), _this3.child.push(new h({
+      })), _this3.child.push(new d({
         name: "sortbutton",
-        state: e
-      })), _this3.child.push(new l({
-        name: "refreshall",
         state: e
       }));
       return _this3;
     }
 
     return _createClass(a);
-  }(s);
+  }(n);
 
-  var i = /*#__PURE__*/function (_s3) {
-    _inherits(i, _s3);
+  var i = /*#__PURE__*/function (_n3) {
+    _inherits(i, _n3);
 
     var _super3 = _createSuper(i);
 
@@ -303,10 +298,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }]);
 
     return i;
-  }(s);
+  }(n);
 
-  var o = /*#__PURE__*/function (_s4) {
-    _inherits(o, _s4);
+  var o = /*#__PURE__*/function (_n4) {
+    _inherits(o, _n4);
 
     var _super4 = _createSuper(o);
 
@@ -325,10 +320,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }]);
 
     return o;
-  }(s);
+  }(n);
 
-  var r = /*#__PURE__*/function (_s5) {
-    _inherits(r, _s5);
+  var r = /*#__PURE__*/function (_n5) {
+    _inherits(r, _n5);
 
     var _super5 = _createSuper(r);
 
@@ -347,31 +342,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }]);
 
     return r;
-  }(s);
+  }(n);
 
-  var h = /*#__PURE__*/function (_s6) {
-    _inherits(h, _s6);
+  var d = /*#__PURE__*/function (_n6) {
+    _inherits(d, _n6);
 
-    var _super6 = _createSuper(h);
+    var _super6 = _createSuper(d);
 
-    function h() {
-      _classCallCheck(this, h);
+    function d() {
+      _classCallCheck(this, d);
 
       return _super6.apply(this, arguments);
     }
 
-    _createClass(h, [{
+    _createClass(d, [{
       key: "template",
       value: function template() {
-        return '\n      <button id="sortbutton">초기화</button>\n    ';
+        return '\n      <div id="sortbutton">\n        <button data-action = \'all\' id="refreshall">초기화</button>\n        <button data-action = \'page\' id="refreshpage">새로고침</button>\n      </div>\n    ';
       }
     }]);
 
-    return h;
-  }(s);
+    return d;
+  }(n);
 
-  var l = /*#__PURE__*/function (_s7) {
-    _inherits(l, _s7);
+  var l = /*#__PURE__*/function (_n7) {
+    _inherits(l, _n7);
 
     var _super7 = _createSuper(l);
 
@@ -384,65 +379,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     _createClass(l, [{
       key: "template",
       value: function template() {
-        return '\n      <button id="refreshall">새로고침</button>\n    ';
+        var t = this.state.data,
+            e = "" !== this.state.name ? "class='writer-on'" : "";
+        return "\n    \n      <div id='postlist'>\n        <ul>\n          <li>\uAE00\uBC88\uD638</li>\n          <li data-action='title'>\uC81C\uBAA9</li>\n          <li>\uC791\uC131\uC790</li>\n          <li>\uC791\uC131\uC77C</li>\n        </ul>\n        ".concat(0 === t.length ? "" : t.map(function (t, n) {
+          return "\n          <ul data-index=".concat(t.id, ">  \n            <li id= ").concat(t.id, ">").concat(t.id, "</li>\n            <li data-action='title'>").concat(t.title, "</li>\n            <li data-action='writer' ").concat(e, " >").concat(t.writer, "</li>\n            <li>").concat(t.date.split("T")[0], "</li>\n          </ul>");
+        }).join(""), "\n      </div>");
       }
     }]);
 
     return l;
-  }(s);
+  }(n);
 
-  var c = /*#__PURE__*/function (_s8) {
-    _inherits(c, _s8);
+  var h = /*#__PURE__*/function (_n8) {
+    _inherits(h, _n8);
 
-    var _super8 = _createSuper(c);
+    var _super8 = _createSuper(h);
+
+    function h(_ref4) {
+      var _this4;
+
+      var t = _ref4.name,
+          e = _ref4.state;
+
+      _classCallCheck(this, h);
+
+      _this4 = _super8.call(this, {
+        name: t,
+        state: e
+      }), _this4.child = [], _this4.child.push(new p({
+        name: "pagination-button",
+        state: e
+      })), _this4.child.push(new c({
+        name: "postbutton",
+        state: e
+      }));
+      return _this4;
+    }
+
+    return _createClass(h);
+  }(n);
+
+  var c = /*#__PURE__*/function (_n9) {
+    _inherits(c, _n9);
+
+    var _super9 = _createSuper(c);
 
     function c() {
       _classCallCheck(this, c);
 
-      return _super8.apply(this, arguments);
+      return _super9.apply(this, arguments);
     }
 
     _createClass(c, [{
       key: "template",
       value: function template() {
-        var t = this.state.data;
-        return "\n    <div id='postlist'>\n        ".concat(0 === t.length ? "" : t.map(function (t, e) {
-          return "\n          <ul data-index=".concat(e, ">  \n            <li id= ").concat(t.id, ">").concat(t.id, "</li>\n            <li data-action='title'>").concat(t.title, "</li>\n            <li data-action='writer'>").concat(t.writer, "</li>\n            <li>").concat(t.date, "</li>\n          </ul>");
-        }).join(""), "\n      </div>");
+        return "\n      <div id=postbutton>\n        <button>글 작성</button>\n      </div>\n    ";
       }
     }]);
 
     return c;
-  }(s);
+  }(n);
 
-  var d = /*#__PURE__*/function (_s9) {
-    _inherits(d, _s9);
-
-    var _super9 = _createSuper(d);
-
-    function d() {
-      _classCallCheck(this, d);
-
-      return _super9.apply(this, arguments);
-    }
-
-    _createClass(d, [{
-      key: "template",
-      value: function template() {
-        return "\n      <div id=postbutton>\n        <button>작성</button>\n      </div>\n    ";
-      }
-    }]);
-
-    return d;
-  }(s);
-
-  var p = /*#__PURE__*/function (_s10) {
-    _inherits(p, _s10);
+  var p = /*#__PURE__*/function (_n10) {
+    _inherits(p, _n10);
 
     var _super10 = _createSuper(p);
 
     function p() {
-      var _this4;
+      var _this5;
 
       _classCallCheck(this, p);
 
@@ -450,13 +454,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         args[_key] = arguments[_key];
       }
 
-      _this4 = _super10.call.apply(_super10, [this].concat(args));
+      _this5 = _super10.call.apply(_super10, [this].concat(args));
 
-      _defineProperty(_assertThisInitialized(_this4), "page", void 0);
+      _defineProperty(_assertThisInitialized(_this5), "page", void 0);
 
-      _defineProperty(_assertThisInitialized(_this4), "group", void 0);
+      _defineProperty(_assertThisInitialized(_this5), "group", void 0);
 
-      return _this4;
+      return _this5;
     }
 
     _createClass(p, [{
@@ -465,157 +469,167 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var _this$state = this.state,
             t = _this$state.page,
             e = _this$state.size,
-            s = _this$state.total,
-            n = _this$state.data,
+            n = _this$state.total,
+            s = _this$state.data,
             a = Number(t) > 1,
-            i = Number(e) * Number(t) < Number(s);
-        return "\n      <div id=pagination>\n      ".concat(0 === Number(s) ? '<span class="none-display">"게시글이 존재 하지 않습니다."</span>' : "", "\n      ").concat(a ? '<button data-action="less">이전</button>' : "", "\n      ").concat(i ? '<button data-action="more">더보기</button>' : "", "\n      ").concat(Number(s) && !i ? '<span class="none-display">"마지막 페이지 입니다"</span>' : "", "\n      </div>\n    ");
+            i = Number(e) * Number(t) < Number(n);
+        return "\n      <div id=pagination-button>\n      ".concat(0 === Number(n) ? '<span class="none-display">"게시글이 존재 하지 않습니다."</span>' : "", "\n      ").concat(a ? '<button data-action="less">이전</button>' : "", "\n      ").concat(i ? '<button data-action="more">더보기</button>' : "", "\n      ").concat(Number(n) && !i ? '<span class="none-display">"마지막 페이지 입니다"</span>' : "", "\n      </div>\n    ");
       }
     }]);
 
     return p;
-  }(s);
+  }(n);
 
-  var u = /*#__PURE__*/function (_s11) {
-    _inherits(u, _s11);
-
-    var _super11 = _createSuper(u);
-
-    function u(_ref4) {
-      var _this5;
-
-      var t = _ref4.name,
-          e = _ref4.state;
-
-      _classCallCheck(this, u);
-
-      (_this5 = _super11.call(this, {
-        name: t,
-        state: e
-      }), _defineProperty(_assertThisInitialized(_this5), "child", void 0)), _this5.child = [], _this5.child.push(new m({
-        name: "header",
-        state: e
-      })), _this5.child.push(new b({
-        name: "contents",
-        state: e
-      })), _this5.child.push(new v({
-        name: "bottombutton",
-        state: e
-      }));
-      return _this5;
+  var u = {
+    index: 0,
+    setIndex: function setIndex(t) {
+      this.index = t;
     }
+  };
 
-    return _createClass(u);
-  }(s);
+  var m = /*#__PURE__*/function (_n11) {
+    _inherits(m, _n11);
 
-  var m = /*#__PURE__*/function (_s12) {
-    _inherits(m, _s12);
+    var _super11 = _createSuper(m);
 
-    var _super12 = _createSuper(m);
-
-    function m() {
-      _classCallCheck(this, m);
-
-      return _super12.apply(this, arguments);
-    }
-
-    _createClass(m, [{
-      key: "template",
-      value: function template() {
-        var t = this.index || 0;
-        console.log("===============adfasdf", this.name, this.state);
-        var e = this.state.data;
-        return "\n      <header id=\"header\">\n        <div>\n          <span>\uAE00\uBC88\uD638</span>\n          <span>\uC81C\uBAA9</span>\n          <span>\uC791\uC131\uC790</span>\n          <span>\uB0A0\uC9DC</span>\n        </div>\n        <div>\n          <span>".concat(e[t].id, "</span>\n          <span>").concat(e[t].title, "</span>\n          <span>").concat(e[t].writer, "</span>\n          <span>").concat(e[t].date, "</span>\n        </div>\n\n      </header>\n    ");
-      }
-    }]);
-
-    return m;
-  }(s);
-
-  var b = /*#__PURE__*/function (_s13) {
-    _inherits(b, _s13);
-
-    var _super13 = _createSuper(b);
-
-    function b() {
-      _classCallCheck(this, b);
-
-      return _super13.apply(this, arguments);
-    }
-
-    _createClass(b, [{
-      key: "template",
-      value: function template() {
-        var t = this.index || 0,
-            e = this.state.data;
-        return "\n      <div id=\"contents\">\n        <p>".concat(e[t].content, "</p>\n      </div>\n    ");
-      }
-    }]);
-
-    return b;
-  }(s);
-
-  var v = /*#__PURE__*/function (_s14) {
-    _inherits(v, _s14);
-
-    var _super14 = _createSuper(v);
-
-    function v() {
-      _classCallCheck(this, v);
-
-      return _super14.apply(this, arguments);
-    }
-
-    _createClass(v, [{
-      key: "template",
-      value: function template() {
-        return '\n      <div id="bottombutton">\n        <button data-action="edit">수정</button>\n        <button data-action="list">목록</button>\n        <button data-action="delete">삭제</button>\n      </div>\n    ';
-      }
-    }]);
-
-    return v;
-  }(s);
-
-  var g = new ( /*#__PURE__*/function (_s15) {
-    _inherits(_class2, _s15);
-
-    var _super15 = _createSuper(_class2);
-
-    function _class2(_ref5) {
+    function m(_ref5) {
       var _this6;
 
       var t = _ref5.name,
           e = _ref5.state;
 
-      _classCallCheck(this, _class2);
+      _classCallCheck(this, m);
 
-      _this6 = _super15.call(this, {
+      (_this6 = _super11.call(this, {
         name: t,
         state: e
-      }), _this6.components.push(new n({
-        name: "postlistpage",
+      }), _defineProperty(_assertThisInitialized(_this6), "child", void 0)), _this6.child = [], _this6.child.push(new b({
+        name: "header",
         state: e
-      })), _this6.components.push(new u({
-        name: "postsingle",
+      })), _this6.child.push(new v({
+        name: "contents",
+        state: e
+      })), _this6.child.push(new g({
+        name: "bottombutton",
         state: e
       }));
       return _this6;
     }
 
+    return _createClass(m);
+  }(n);
+
+  var b = /*#__PURE__*/function (_n12) {
+    _inherits(b, _n12);
+
+    var _super12 = _createSuper(b);
+
+    function b() {
+      _classCallCheck(this, b);
+
+      return _super12.apply(this, arguments);
+    }
+
+    _createClass(b, [{
+      key: "template",
+      value: function template() {
+        var t = u.index,
+            e = this.state.data.filter(function (e) {
+          return e.id === Number(t);
+        })[0];
+        return !(!e || 0 === e.length) && "\n      <header id=\"header\">\n        <div class='single-header'>\n          <span>\uAE00\uBC88\uD638</span>\n          <span>\uC81C\uBAA9</span>\n          <span>\uC791\uC131\uC790</span>\n          <span>\uB0A0\uC9DC</span>\n        </div>\n        <div class='single-content'>\n          <span>".concat(e.id, "</span>\n          <span>").concat(e.title, "</span>\n          <span>").concat(e.writer, "</span>\n          <span>").concat(e.date.split("T")[0], "</span>\n        </div>\n\n      </header>\n    ");
+      }
+    }]);
+
+    return b;
+  }(n);
+
+  var v = /*#__PURE__*/function (_n13) {
+    _inherits(v, _n13);
+
+    var _super13 = _createSuper(v);
+
+    function v() {
+      _classCallCheck(this, v);
+
+      return _super13.apply(this, arguments);
+    }
+
+    _createClass(v, [{
+      key: "template",
+      value: function template() {
+        var t = u.index;
+        return "\n      <div id=\"contents\">\n        <textarea cols=\"50\" rows=\"20\" name ='content' readonly>".concat(this.state.data.filter(function (e) {
+          return e.id === Number(t);
+        })[0].content, "</textarea>\n      </div>\n    ");
+      }
+    }]);
+
+    return v;
+  }(n);
+
+  var g = /*#__PURE__*/function (_n14) {
+    _inherits(g, _n14);
+
+    var _super14 = _createSuper(g);
+
+    function g() {
+      _classCallCheck(this, g);
+
+      return _super14.apply(this, arguments);
+    }
+
+    _createClass(g, [{
+      key: "template",
+      value: function template() {
+        return '\n      <div id="bottombutton">\n      <button data-action="list">목록</button>\n        <button data-action="edit">수정</button>\n        <button data-action="delete">삭제</button>\n      </div>\n    ';
+      }
+    }]);
+
+    return g;
+  }(n);
+
+  var x = new ( /*#__PURE__*/function (_n15) {
+    _inherits(_class2, _n15);
+
+    var _super15 = _createSuper(_class2);
+
+    function _class2(_ref6) {
+      var _this7;
+
+      var t = _ref6.name,
+          e = _ref6.state;
+
+      _classCallCheck(this, _class2);
+
+      _this7 = _super15.call(this, {
+        name: t,
+        state: e
+      }), _this7.components.push(new s({
+        name: "postlistpage",
+        state: e
+      })), _this7.components.push(new m({
+        name: "postsingle",
+        state: e
+      }));
+      return _this7;
+    }
+
     return _createClass(_class2);
-  }(s))({
+  }(n))({
     name: "app"
   });
 
-  function $(t) {
+  function w(t) {
     return new Promise( /*#__PURE__*/function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e, s) {
-        var n, a, i, o, r;
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e, n) {
+        var s, a, i, o, r, d;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                n = t.url, a = t.state, i = new ( /*#__PURE__*/function () {
+                s = t.url, a = t.state, i = t.index;
+                o = new ( /*#__PURE__*/function () {
                   function _class4() {
                     _classCallCheck(this, _class4);
 
@@ -637,16 +651,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     key: "initState",
                     value: function initState(t) {
                       var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : !1;
-                      this.state = t, e || history.pushState({
-                        state: this.state
-                      }, null, location.origin + "/page?" + this.cacheHandler.getCacheId());
+                      this.state = t;
                     }
                   }, {
                     key: "setState",
                     value: function setState(t) {
-                      this.state = _objectSpread(_objectSpread({}, this.state), t), this.updateView(), console.log("after setState=", this.state, location.origin + "/page?" + this.cacheHandler.getCacheId()), history.pushState({
+                      this.state = _objectSpread(_objectSpread({}, this.state), t), history.pushState({
                         state: this.state
-                      }, null, location.origin + "/page?" + this.cacheHandler.getCacheId());
+                      }, null, location.origin + "/page?" + this.cacheHandler.getCacheId()), this.updateView();
                     }
                   }, {
                     key: "updateView",
@@ -666,7 +678,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   }]);
 
                   return _class4;
-                }())(), o = new ( /*#__PURE__*/function () {
+                }())(), r = new ( /*#__PURE__*/function () {
                   function _class6() {
                     _classCallCheck(this, _class6);
 
@@ -674,7 +686,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                     _defineProperty(this, "base", void 0);
 
-                    _defineProperty(this, "routeState", void 0);
+                    _defineProperty(this, "index", void 0);
 
                     _defineProperty(this, "root", void 0);
 
@@ -711,25 +723,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                       }
                     }
                   }, {
-                    key: "setRouteState",
-                    value: function setRouteState(t) {
-                      this.routeState = {
-                        value: t
-                      };
+                    key: "setIndex",
+                    value: function setIndex(t) {
+                      this.index = Number(t);
                     }
                   }, {
                     key: "setPathCur",
                     value: function setPathCur(t) {
-                      if (t = "/page" === t ? "/" : t, this.cur = this.routes.filter(function (e) {
+                      var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : !1;
+                      t = "/page" === t ? "/" : t, this.cur = this.routes.filter(function (e) {
                         return e.path === t;
-                      })[0].comPosition, this.app.curPos = this.cur, !this.root) return !1;
-                      this.app.onLoad(), this.templateRender(), this.setRoot();
+                      })[0].comPosition, this.app.curPos = this.cur, e || this.templateRender();
                     }
                   }, {
                     key: "templateRender",
                     value: function templateRender() {
-                      var t = this.app.template();
-                      this.root.innerHTML = t;
+                      this.root.innerHTML = this.app.template(), this.setRoot(this.root);
                     }
                   }, {
                     key: "serverRender",
@@ -740,7 +749,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                   return _class6;
                 }())();
-                o.subscribe(g), o.setRoutes([{
+                r.subscribe(x), r.setRoutes([{
                   path: "/",
                   comPosition: 0
                 }, {
@@ -749,11 +758,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }, {
                   path: "/post-edit",
                   comPosition: 2
-                }]), o.setPathCur(n), i.initState(a, !0), g.setState(a);
-                r = o.serverRender();
-                r ? e(r) : s(new Error("SSR error"));
+                }, {
+                  path: "/nout-found",
+                  comPosition: 3
+                }]), s = 0 === a.data.length ? "/not-found" : s, r.setPathCur(s, !0), u.setIndex(Number(i)), o.initState(a, !0), x.setState(a);
+                d = r.serverRender();
+                d ? e(d) : (r.setPathCur("/not-found", !0), d = r.serverRender(), d ? e(d) : n(new Error("SSR error")));
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -762,7 +774,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }));
 
       return function (_x, _x2) {
-        return _ref6.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       };
     }());
   }
@@ -785,36 +797,27 @@ __webpack_require__(/*! core-js/modules/es.array.map.js */ "core-js/modules/es.a
 
 __webpack_require__(/*! core-js/modules/es.array.fill.js */ "core-js/modules/es.array.fill.js");
 
-__webpack_require__(/*! core-js/modules/es.array.slice.js */ "core-js/modules/es.array.slice.js");
+__webpack_require__(/*! core-js/modules/es.array.concat.js */ "core-js/modules/es.array.concat.js");
 
-__webpack_require__(/*! core-js/modules/es.array.reverse.js */ "core-js/modules/es.array.reverse.js");
+var ref = [0, 31, 59, 90, 120, 151, 182];
 
 var setData = function setData() {
   var dataLength = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 30;
   return new Array(dataLength).fill(0).map(function (ele, idx) {
+    var day = idx + 1;
+    var mon = day <= 31 ? 1 : day <= 59 ? 2 : day <= 90 ? 3 : day <= 120 ? 4 : day <= 151 ? 5 : day <= 182 ? 6 : 7;
     return {
       id: idx + 1,
       title: "title".concat(idx + 1),
       writer: "name".concat(idx + 1),
       content: "content".concat(idx + 1),
-      date: "2022-1-".concat(idx + 1)
+      date: "2021-".concat(mon, "-").concat(day - ref[mon - 1])
     };
   });
 };
 
 var totData = setData(200);
-module.exports = {
-  totData: totData,
-  initialState: {
-    data: totData.slice().reverse().slice(0, 5),
-    page: 1,
-    size: 5,
-    order: 'dsc',
-    filter: '',
-    name: '',
-    total: totData.length
-  }
-};
+module.exports = totData;
 
 /***/ }),
 
@@ -859,6 +862,10 @@ __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.j
 
 __webpack_require__(/*! core-js/modules/es.object.define-properties.js */ "core-js/modules/es.object.define-properties.js");
 
+__webpack_require__(/*! core-js/modules/es.array.slice.js */ "core-js/modules/es.array.slice.js");
+
+__webpack_require__(/*! core-js/modules/es.array.reverse.js */ "core-js/modules/es.array.reverse.js");
+
 __webpack_require__(/*! core-js/modules/es.array.filter.js */ "core-js/modules/es.array.filter.js");
 
 __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "core-js/modules/es.object.to-string.js");
@@ -869,17 +876,19 @@ __webpack_require__(/*! core-js/modules/es.array.includes.js */ "core-js/modules
 
 __webpack_require__(/*! core-js/modules/es.string.includes.js */ "core-js/modules/es.string.includes.js");
 
-__webpack_require__(/*! core-js/modules/es.array.reverse.js */ "core-js/modules/es.array.reverse.js");
-
 __webpack_require__(/*! core-js/modules/es.array.map.js */ "core-js/modules/es.array.map.js");
-
-__webpack_require__(/*! core-js/modules/es.array.slice.js */ "core-js/modules/es.array.slice.js");
 
 __webpack_require__(/*! core-js/modules/es.function.name.js */ "core-js/modules/es.function.name.js");
 
 __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "core-js/modules/es.number.constructor.js");
 
 __webpack_require__(/*! core-js/modules/es.array.concat.js */ "core-js/modules/es.array.concat.js");
+
+__webpack_require__(/*! core-js/modules/es.date.to-iso-string.js */ "core-js/modules/es.date.to-iso-string.js");
+
+__webpack_require__(/*! core-js/modules/es.date.to-string.js */ "core-js/modules/es.date.to-string.js");
+
+__webpack_require__(/*! core-js/modules/es.array.splice.js */ "core-js/modules/es.array.splice.js");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -899,9 +908,19 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var _require = __webpack_require__(/*! ./Data.js */ "./src/Data.js"),
-    totData = _require.totData; // ---- Query executor ---- 
+var tem = __webpack_require__(/*! ./Data.js */ "./src/Data.js");
 
+var totData = tem;
+var initialState = {
+  data: totData.slice().reverse().slice(0, 5),
+  page: 1,
+  size: 5,
+  order: 'dsc',
+  filter: '',
+  name: '',
+  total: totData.length,
+  index: 0
+}; // ---- Query executor ---- 
 
 var queryExecutor = {
   // SELECT * FROM _ WHERE all culumn LIKE '%keyword%' 
@@ -1011,8 +1030,51 @@ module.exports = {
         total = state.total,
         page = state.page,
         size = state.size;
-    var id = "filter=".concat(filter, "&name=").concat(name, "&order=").concat(order, "&page=").concat(page, "&size=").concat(size, "&total=").concat(total);
+    var id = "filter=".concat(filter, "&name=").concat(name, "&order=").concat(order, "&page=").concat(page, "&size=").concat(size);
     return id;
+  },
+  updatePost: function updatePost(_ref) {
+    var writer = _ref.writer,
+        title = _ref.title,
+        content = _ref.content,
+        id = _ref.id;
+    // console.log("id===========", id)
+    totData = totData.map(function (ele) {
+      if (Number(ele.id) === Number(id)) {
+        ele.writer = writer;
+        ele.title = title;
+        ele.content = content;
+      }
+
+      return ele;
+    }); // console.log(totData[ totData.length-1 ])
+
+    return totData;
+  },
+  createPost: function createPost(_ref2) {
+    var writer = _ref2.writer,
+        title = _ref2.title,
+        content = _ref2.content;
+    var id = totData[totData.length - 1].id + 1;
+    totData.push({
+      id: id,
+      writer: writer,
+      title: title,
+      content: content,
+      date: new Date().toISOString()
+    });
+    return totData;
+  },
+  deletePost: function deletePost(id) {
+    for (var i = 0; i < totData.length; i++) {
+      if (totData[i].id === Number(id)) totData.splice(i, 1);
+    }
+
+    return totData;
+  },
+  getInitialState: function getInitialState() {
+    initialState.data = totData.slice().reverse().slice(0, 5);
+    return initialState;
   }
 };
 
@@ -1092,8 +1154,6 @@ module.exports = getStringHtml;
 "use strict";
 
 
-__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "core-js/modules/es.object.define-property.js");
-
 __webpack_require__(/*! core-js/modules/es.object.keys.js */ "core-js/modules/es.object.keys.js");
 
 __webpack_require__(/*! core-js/modules/es.symbol.js */ "core-js/modules/es.symbol.js");
@@ -1112,6 +1172,8 @@ __webpack_require__(/*! core-js/modules/es.object.get-own-property-descriptors.j
 
 __webpack_require__(/*! core-js/modules/es.object.define-properties.js */ "core-js/modules/es.object.define-properties.js");
 
+__webpack_require__(/*! core-js/modules/es.object.define-property.js */ "core-js/modules/es.object.define-property.js");
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -1123,9 +1185,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var _require = __webpack_require__(/*! ./Data */ "./src/Data.js"),
-    initialState = _require.initialState;
 
 var ServerStore = /*#__PURE__*/function () {
   function ServerStore(state) {
@@ -1146,7 +1205,9 @@ var ServerStore = /*#__PURE__*/function () {
   return ServerStore;
 }();
 
-module.exports = new ServerStore(initialState);
+module.exports = {
+  store: new ServerStore()
+};
 
 /***/ }),
 
@@ -1390,6 +1451,39 @@ module.exports = require("core-js/modules/es.array.slice.js");
 
 /***/ }),
 
+/***/ "core-js/modules/es.array.splice.js":
+/*!*****************************************************!*\
+  !*** external "core-js/modules/es.array.splice.js" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("core-js/modules/es.array.splice.js");
+
+/***/ }),
+
+/***/ "core-js/modules/es.date.to-iso-string.js":
+/*!***********************************************************!*\
+  !*** external "core-js/modules/es.date.to-iso-string.js" ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("core-js/modules/es.date.to-iso-string.js");
+
+/***/ }),
+
+/***/ "core-js/modules/es.date.to-string.js":
+/*!*******************************************************!*\
+  !*** external "core-js/modules/es.date.to-string.js" ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("core-js/modules/es.date.to-string.js");
+
+/***/ }),
+
 /***/ "core-js/modules/es.function.bind.js":
 /*!******************************************************!*\
   !*** external "core-js/modules/es.function.bind.js" ***!
@@ -1610,6 +1704,17 @@ module.exports = require("core-js/modules/es.string.iterator.js");
 
 /***/ }),
 
+/***/ "core-js/modules/es.string.split.js":
+/*!*****************************************************!*\
+  !*** external "core-js/modules/es.string.split.js" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("core-js/modules/es.string.split.js");
+
+/***/ }),
+
 /***/ "core-js/modules/es.symbol.description.js":
 /*!***********************************************************!*\
   !*** external "core-js/modules/es.symbol.description.js" ***!
@@ -1790,6 +1895,8 @@ var __webpack_exports__ = {};
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
+__webpack_require__(/*! core-js/modules/es.function.name.js */ "core-js/modules/es.function.name.js");
+
 __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "core-js/modules/es.object.to-string.js");
 
 __webpack_require__(/*! core-js/modules/es.promise.js */ "core-js/modules/es.promise.js");
@@ -1813,23 +1920,27 @@ var path = __webpack_require__(/*! path */ "path");
 var server = express();
 var PORT = 3001;
 
-var _require = __webpack_require__(/*! ./src/executor.js */ "./src/executor.js"),
-    updateStateByQueryExecutor = _require.updateStateByQueryExecutor,
-    getPathURL = _require.getPathURL;
-
 var getStringHtml = __webpack_require__(/*! ./src/ssr.service.js */ "./src/ssr.service.js");
 
-var store = __webpack_require__(/*! ./src/store.js */ "./src/store.js");
+var _require = __webpack_require__(/*! ./src/store.js */ "./src/store.js"),
+    store = _require.store;
 
-var _require2 = __webpack_require__(/*! ./src/Data */ "./src/Data.js"),
-    initialState = _require2.initialState;
+var _require2 = __webpack_require__(/*! ./src/executor.js */ "./src/executor.js"),
+    updateStateByQueryExecutor = _require2.updateStateByQueryExecutor,
+    getPathURL = _require2.getPathURL,
+    getInitialState = _require2.getInitialState,
+    updatePost = _require2.updatePost,
+    createPost = _require2.createPost,
+    deletePost = _require2.deletePost;
 
 server.options('*', cors());
 server.use(express.json());
+server.use(express.urlencoded({
+  extended: true
+}));
 server.use(express["static"](path.resolve(__dirname, 'public')));
 
 var updateCache = function updateCache(req, res) {
-  console.log('cache update comming to here', req.query);
   if (!req.query) return res.status(400).end();
   store.setState(updateStateByQueryExecutor(req.query));
   var _store$state = store.state,
@@ -1857,10 +1968,9 @@ var updateState = /*#__PURE__*/function () {
 
           case 2:
             store.setState(req.body);
-            console.log('comming to /api/state');
             return _context.abrupt("return", res.status(203).end());
 
-          case 5:
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -1880,13 +1990,12 @@ server.get('/', /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log(req.query);
-            console.log('comming to basic path');
-            store.setState(initialState);
+            store.setState(getInitialState()); // console.log('초반', store.state)
+
             redirectTo = "/page?" + getPathURL(store.state);
             return _context2.abrupt("return", res.redirect(redirectTo));
 
-          case 5:
+          case 3:
           case "end":
             return _context2.stop();
         }
@@ -1905,19 +2014,21 @@ server.get('/page', /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            console.log('comming to server page not passed by bypass let me see what ');
+            if (!store.state) store.setState(getInitialState()); // console.log('페이지', store.state)
+
             filePath = 'page?' + getPathURL(req.query);
             fileURL = path.resolve(__dirname, '../../client/resources', 'index_' + filePath + '.html');
 
             if (fs.existsSync(fileURL)) {
-              _context3.next = 12;
+              _context3.next = 11;
               break;
             }
 
             _context3.next = 6;
             return getStringHtml({
               url: '/',
-              state: store.state
+              state: store.state,
+              index: 0
             });
 
           case 6:
@@ -1926,22 +2037,20 @@ server.get('/page', /*#__PURE__*/function () {
             return fs.writeFileSync(fileURL, html);
 
           case 9:
-            console.log('file not exists', fileURL);
-            _context3.next = 16;
+            _context3.next = 14;
             break;
 
-          case 12:
-            _context3.next = 14;
+          case 11:
+            _context3.next = 13;
             return fs.readFileSync(fileURL, 'utf-8');
 
-          case 14:
+          case 13:
             html = _context3.sent;
-            console.log('fileexists', fileURL);
 
-          case 16:
+          case 14:
             return _context3.abrupt("return", res.send(html));
 
-          case 17:
+          case 15:
           case "end":
             return _context3.stop();
         }
@@ -1955,26 +2064,24 @@ server.get('/page', /*#__PURE__*/function () {
 }());
 server.get('/post-single', /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
-    var result;
+    var index, result;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            console.log(req.url);
-            console.log(req.query);
-            console.log(store.state);
-            _context4.next = 5;
+            index = req.query.index;
+            _context4.next = 3;
             return getStringHtml({
               url: '/post-single',
-              state: store.state
+              state: store.state,
+              index: index
             });
 
-          case 5:
+          case 3:
             result = _context4.sent;
-            console.log(result);
-            res.send(result);
+            return _context4.abrupt("return", res.send(result));
 
-          case 8:
+          case 5:
           case "end":
             return _context4.stop();
         }
@@ -1988,6 +2095,39 @@ server.get('/post-single', /*#__PURE__*/function () {
 }());
 server.get('/api/cache', updateCache);
 server.put('/api/state', updateState);
+server.post('/post/edit', function (req, res) {
+  if (req.body.id === '') {
+    if (!createPost(req.body)) return res.status(500).send('Internal server error');
+    store.setState(updateStateByQueryExecutor({
+      filter: "",
+      order: 'dsc',
+      name: "",
+      page: 1,
+      size: 5
+    }));
+    return res.json(store.state);
+  }
+
+  if (!updatePost(req.body)) return res.status(500).send('Internal server error');
+  var name = store.state.name !== '' ? req.body.writer : '';
+  store.setState({
+    name: name
+  });
+  store.setState(updateStateByQueryExecutor(store.state));
+  return res.json(store.state);
+});
+server["delete"]('/post/delete', function (req, res) {
+  // console.log('asdfasdf deltete', store.state)
+  if (!deletePost(req.query.id)) return res.status(500).send("Internal server error");
+  store.setState(updateStateByQueryExecutor({
+    filter: "",
+    order: 'dsc',
+    name: "",
+    page: 1,
+    size: 5
+  }));
+  return res.status(202).json(store.state);
+});
 server.listen(PORT, function () {
   console.log("server listning by Port= " + PORT);
 });

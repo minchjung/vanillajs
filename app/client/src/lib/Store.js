@@ -12,14 +12,16 @@ class Store {
   initState(initial, server=false){
     this.state = initial;
     if(server) return 
+    // console.log(this.state)
     // history.pushState({ state : this.state }, null, location.origin + '/page?' + this.cacheHandler.getCacheId())    
 
   }
 
   setState(newState){
     this.state = { ...this.state, ...newState };
+    // console.log(this.cacheHandler.getCacheId())
     history.pushState({ state : this.state }, null, location.origin + '/page?' + this.cacheHandler.getCacheId())    
-    console.log(history)
+    // console.log(history)
     this.updateView();
     // const { filter, name, order, page, size, total }  = this.state
     // const url = `/page?filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
@@ -32,6 +34,7 @@ class Store {
   }
 
   renderAll(){
+    // console.log('render All works')
     this.app.render();
   }
 

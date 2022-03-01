@@ -15,29 +15,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _src_action_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/action.js */ "./src/action.js");
 /* harmony import */ var _src_lib_Store_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/lib/Store.js */ "./src/lib/Store.js");
-/* harmony import */ var _src_lib_Data_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/lib/Data.js */ "./src/lib/Data.js");
-/* harmony import */ var _src_components_App_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/components/App.js */ "./src/components/App.js");
-/* harmony import */ var _src_lib_Router_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./src/lib/Router.js */ "./src/lib/Router.js");
+/* harmony import */ var _src_components_App_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/App.js */ "./src/components/App.js");
+/* harmony import */ var _src_lib_Router_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/lib/Router.js */ "./src/lib/Router.js");
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles.css */ "./styles.css");
 
 
 
 
 
 
-const initialState = {
-  data : _src_lib_Data_js__WEBPACK_IMPORTED_MODULE_2__.totData.slice().reverse().slice(0,5),
-  page : 1,
-  size : 5, 
-  order : 'dsc',
-  filter : '',
-  name : '',
-  total : _src_lib_Data_js__WEBPACK_IMPORTED_MODULE_2__.totData.length,
-}
 
-const state = globalThis.state || initialState; 
+const state = globalThis.state 
 const store = new _src_lib_Store_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
-store.initState(state);
-store.subscribe(_src_components_App_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+store.subscribe(_src_components_App_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 let temp ;
 Object.entries(_src_action_js__WEBPACK_IMPORTED_MODULE_0__.actionHandler.cacheHandler)
@@ -46,9 +36,12 @@ Object.entries(_src_action_js__WEBPACK_IMPORTED_MODULE_0__.actionHandler.cacheHa
     store.cacheHandler[handler] = temp.bind(store);
 })
 
+store.initState(state);
+store.cacheHandler.setCache();
 
-const router = new _src_lib_Router_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
-router.subscribe(_src_components_App_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+
+const router = new _src_lib_Router_js__WEBPACK_IMPORTED_MODULE_3__["default"]();
+router.subscribe(_src_components_App_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
 router.setRoutes( 
   [
     { path : '/',
@@ -57,14 +50,549 @@ router.setRoutes(
     { path : '/post-single',
       comPosition : 1
     },
+    { path : '/post-edit',
+      comPosition : 2
+    },
+    { 
+      path : '/nout-found',
+      comPosition : 3
+    }
   ] 
 )
 
+router.setPathCur(location.pathname, true);
+router.setIndex(location.search.split('=')[1])
 router.setRoot(document.querySelector('#root') );
-store.cacheHandler.setCache();
 
-console.log(store, router)
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./styles.css":
+/*!**********************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./styles.css ***!
+  \**********************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "*{\n  list-style: none;\n  box-sizing: border-box;\n\n}\n\nlabel{\n  display: block;\n  width: 150px;\n  text-align: left;\n}\nselect{\n  display: block;\n  width: 50px;\n}\nbutton{\n  width: 65px;\n  border-radius: 5px;\n  border: 1px solid gainsboro;\n  cursor: pointer;\n}\n\n#postlistpage{\n}\n#postlistheader{\n  display: flex;\n  justify-content: space-around;\n}\n\n\n#search{\n}\n\n#paging{\n  border : 1px solid seagreen;\n  width: 150px;\n  display: flex;\n}\n\n#sorting{\n  width: 150px;\n  display: flex;\n  border: 1px solid darkcyan;\n}\n#sortbutton{\n  border: 1px solid cadetblue;\n}\n\n#postlist{\n  margin: 0 auto;\n  width: 600px;\n}\n\n#postlist ul{\n  display: flex;\n  justify-content: space-around;\n  border-bottom: 1px solid tan;\n}\n#postlist #head-title{\n  border-bottom: 2px solid tan;\n\n}\n\n#pagebutton{\n  margin: 0 auto;\n  width: 600px;\n}\n\n#pagination{\n  float:right;\n  margin-right: 150px;\n}\n\n#postbutton{\n  margin-left: 150px;\n}", "",{"version":3,"sources":["webpack://./styles.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;EAChB,sBAAsB;;AAExB;;AAEA;EACE,cAAc;EACd,YAAY;EACZ,gBAAgB;AAClB;AACA;EACE,cAAc;EACd,WAAW;AACb;AACA;EACE,WAAW;EACX,kBAAkB;EAClB,2BAA2B;EAC3B,eAAe;AACjB;;AAEA;AACA;AACA;EACE,aAAa;EACb,6BAA6B;AAC/B;;;AAGA;AACA;;AAEA;EACE,2BAA2B;EAC3B,YAAY;EACZ,aAAa;AACf;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,0BAA0B;AAC5B;AACA;EACE,2BAA2B;AAC7B;;AAEA;EACE,cAAc;EACd,YAAY;AACd;;AAEA;EACE,aAAa;EACb,6BAA6B;EAC7B,4BAA4B;AAC9B;AACA;EACE,4BAA4B;;AAE9B;;AAEA;EACE,cAAc;EACd,YAAY;AACd;;AAEA;EACE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":["*{\n  list-style: none;\n  box-sizing: border-box;\n\n}\n\nlabel{\n  display: block;\n  width: 150px;\n  text-align: left;\n}\nselect{\n  display: block;\n  width: 50px;\n}\nbutton{\n  width: 65px;\n  border-radius: 5px;\n  border: 1px solid gainsboro;\n  cursor: pointer;\n}\n\n#postlistpage{\n}\n#postlistheader{\n  display: flex;\n  justify-content: space-around;\n}\n\n\n#search{\n}\n\n#paging{\n  border : 1px solid seagreen;\n  width: 150px;\n  display: flex;\n}\n\n#sorting{\n  width: 150px;\n  display: flex;\n  border: 1px solid darkcyan;\n}\n#sortbutton{\n  border: 1px solid cadetblue;\n}\n\n#postlist{\n  margin: 0 auto;\n  width: 600px;\n}\n\n#postlist ul{\n  display: flex;\n  justify-content: space-around;\n  border-bottom: 1px solid tan;\n}\n#postlist #head-title{\n  border-bottom: 2px solid tan;\n\n}\n\n#pagebutton{\n  margin: 0 auto;\n  width: 600px;\n}\n\n#pagination{\n  float:right;\n  margin-right: 150px;\n}\n\n#postbutton{\n  margin-left: 150px;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+
+      content += cssWithMappingToString(item);
+
+      if (needLayer) {
+        content += "}";
+      }
+
+      if (item[2]) {
+        content += "}";
+      }
+
+      if (item[4]) {
+        content += "}";
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+
+
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
+  \************************************************************/
+/***/ ((module) => {
+
+
+
+module.exports = function (item) {
+  var content = item[1];
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (typeof btoa === "function") {
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+  }
+
+  return [content].join("\n");
+};
+
+/***/ }),
+
+/***/ "./styles.css":
+/*!********************!*\
+  !*** ./styles.css ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!./node_modules/css-loader/dist/cjs.js!./styles.css */ "./node_modules/css-loader/dist/cjs.js!./styles.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module) => {
+
+
+
+var stylesInDOM = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+
+  return updater;
+}
+
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
+  \********************************************************************/
+/***/ ((module) => {
+
+
+
+var memo = {};
+/* istanbul ignore next  */
+
+function getTarget(target) {
+  if (typeof memo[target] === "undefined") {
+    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+      try {
+        // This will throw an exception if access to iframe is blocked
+        // due to cross-origin restrictions
+        styleTarget = styleTarget.contentDocument.head;
+      } catch (e) {
+        // istanbul ignore next
+        styleTarget = null;
+      }
+    }
+
+    memo[target] = styleTarget;
+  }
+
+  return memo[target];
+}
+/* istanbul ignore next  */
+
+
+function insertBySelector(insert, style) {
+  var target = getTarget(insert);
+
+  if (!target) {
+    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+  }
+
+  target.appendChild(style);
+}
+
+module.exports = insertBySelector;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+
+module.exports = insertStyleElement;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
+}
+
+module.exports = setAttributesWithoutAttributes;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+
+
+/* istanbul ignore next  */
+function apply(styleElement, options, obj) {
+  var css = "";
+
+  if (obj.supports) {
+    css += "@supports (".concat(obj.supports, ") {");
+  }
+
+  if (obj.media) {
+    css += "@media ".concat(obj.media, " {");
+  }
+
+  var needLayer = typeof obj.layer !== "undefined";
+
+  if (needLayer) {
+    css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
+  }
+
+  css += obj.css;
+
+  if (needLayer) {
+    css += "}";
+  }
+
+  if (obj.media) {
+    css += "}";
+  }
+
+  if (obj.supports) {
+    css += "}";
+  }
+
+  var sourceMap = obj.sourceMap;
+
+  if (sourceMap && typeof btoa !== "undefined") {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  options.styleTagTransform(css, styleElement, options.options);
+}
+
+function removeStyleElement(styleElement) {
+  // istanbul ignore if
+  if (styleElement.parentNode === null) {
+    return false;
+  }
+
+  styleElement.parentNode.removeChild(styleElement);
+}
+/* istanbul ignore next  */
+
+
+function domAPI(options) {
+  var styleElement = options.insertStyleElement(options);
+  return {
+    update: function update(obj) {
+      apply(styleElement, options, obj);
+    },
+    remove: function remove() {
+      removeStyleElement(styleElement);
+    }
+  };
+}
+
+module.exports = domAPI;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+
+    styleElement.appendChild(document.createTextNode(css));
+  }
+}
+
+module.exports = styleTagTransform;
 
 /***/ }),
 
@@ -109,22 +637,21 @@ const actionHandler = {
     
     },
     
-    getCacheId(){
-      // console.log( this.state)
-      const { filter, name, order, page, size, total } = this.state;
-      const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
+    getCacheId(state = this.state){
+      const { filter, name, order, page, size, total } = state;
+      const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}`
       return id
     },
     
-    hasCacheChecker(){
+    hasCacheChecker(state = this.state){
       // check cashdata with current state(updated)
-      const id = this.cacheHandler.getCacheId()
+      const id = this.cacheHandler.getCacheId(state)
       const cached = JSON.parse(localStorage.getItem('cached')) || [];
-      console.log(cached)
       // filter with id and range
       let filtered = cached.filter(ele => ele.id === id)
+
       const bool = filtered.length > 0 
-      console.log(filtered, bool)
+      // console.log(filtered, bool)
       return { 
         isValid : bool, 
         cachingData : bool ? filtered : [],
@@ -132,15 +659,15 @@ const actionHandler = {
       
     },
     
-    async searchCache(){
+    async searchCache(state= this.state, updateView=false){
     
       // cache invalid => requestApi or get data from it
-      const { isValid, cachingData } = this.cacheHandler.hasCacheChecker();
+      const { isValid, cachingData } = this.cacheHandler.hasCacheChecker(state);
       if( !isValid ){
         // after api, maunally render as it returns  async result
         const result = await this.cacheHandler.updateCacheByApi()
         if(result ){
-          this.state = {...this.state, ...{ data : result.data},  ...{ total : result.total }}
+          this.state = {...state, ...{ data : result.data},  ...{ total : result.total }}
           this.renderAll()
         }
         else{
@@ -149,13 +676,25 @@ const actionHandler = {
         } 
       } 
       else{ // cache is valid to use
-        console.log("no need to req api for cache but filtered from cache state =", cachingData)
+        // console.log("no need to req api ")
         // state update by cache & server side store, too
-        this.state = {...this.state, ...{ data : cachingData[0].data , total : cachingData[0].total }}
+        this.state = {...state, ...{ data : cachingData[0].data , total : cachingData[0].total }}
         this.cacheHandler.updateStateByApi() 
+      }
+  
+      if(updateView){
+        // console.log('updateView==', state)
+        this.renderAll()
       }
       return 
       
+    },
+
+    clearCache(initState){
+      localStorage.removeItem('cached');
+      if(initState) this.initState(initState);
+
+      this.cacheHandler.setCache();
     },
         
     async updateCacheByApi(){
@@ -171,7 +710,6 @@ const actionHandler = {
         let cached = JSON.parse(localStorage.getItem('cached'))
         if(!cached || cached.length === 0) cached = []   
         
-        // console.log(result)
         cached.push(result)
         localStorage.setItem('cached', JSON.stringify(cached))
         // window.location.href('http://localhost:8080/page?'+this.getCacheId())
@@ -185,14 +723,14 @@ const actionHandler = {
     },
     
     async updateStateByApi(){
-      console.log('변경된 state before updateStateByApi', this.state)
+      // console.log('변경된 state before updateStateByApi', this.state)
       const result = await fetch(
         '/api/state', { 
           method : 'put',
           headers: { "content-type" : "application/json" },
           body: JSON.stringify(this.state),
       }).then(resp => {
-        console.log('resp from update state==', resp);
+        // console.log('resp from update state==', resp);
         return resp
       });
       
@@ -202,7 +740,7 @@ const actionHandler = {
         ? alert("요청한 페이지를 찾을 수 없습니다.") :
         result.status === 500 
         ? alert("시스템 장애가 발생했습니다. 조금 있다가 다시 시도해 주세요") :
-        result.status === 203 
+        result.status === 303 
         ? console.log(result)
         // window.location.href('http://localhost:8080/page?'+this.getCacheId())
         : null
@@ -227,6 +765,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/Component.js */ "./src/lib/Component.js");
 /* harmony import */ var _PostListPage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostListPage.js */ "./src/components/PostListPage.js");
 /* harmony import */ var _PostSingle_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PostSingle.js */ "./src/components/PostSingle.js");
+/* harmony import */ var _PostEditPage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PostEditPage.js */ "./src/components/PostEditPage.js");
+/* harmony import */ var _NotFoundPage_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NotFoundPage.js */ "./src/components/NotFoundPage.js");
+/* harmony import */ var _csr_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../csr.js */ "./csr.js");
+
+
+
 
 
 
@@ -235,19 +779,218 @@ class App extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]{
 
   constructor({ name, state }){
     super({ name, state })
+    this.historyBounder = this.historyHandler.bind(this);
     this.components.push(new _PostListPage_js__WEBPACK_IMPORTED_MODULE_1__.PostListPage({ name : 'postlistpage' , state}));
     this.components.push(new _PostSingle_js__WEBPACK_IMPORTED_MODULE_2__.PostSinglePage({ name :'postsingle', state }));
+    this.components.push(new _PostEditPage_js__WEBPACK_IMPORTED_MODULE_3__.PostEditPage({ name :'posteditpage', state }));
+    this.components.push(new _NotFoundPage_js__WEBPACK_IMPORTED_MODULE_4__.NoutFoundPage({ name :'notfoundpage', state }));
+  }
+
+  onLoad(){
+    window.removeEventListener('popstate', this.historyHandler)
+    window.addEventListener('popstate', this.historyHandler)
+  }
+
+  historyHandler(event){
+    if( !event.state) return location.assign(location.href);
+
+    const pathname = location.pathname 
+    _csr_js__WEBPACK_IMPORTED_MODULE_5__.router.setPathCur(pathname);
+    // store.setState(event.state.state)
+    _csr_js__WEBPACK_IMPORTED_MODULE_5__.store.cacheHandler.searchCache(event.state.state, true)
+    // console.log(history)
+    // router.templateRender();
   }
 
   template(){
     const renderHTML = this.components[this.curPos].template();
-    return `
+    return `<div id=${this.name}>
         ${renderHTML}
-    `;
+    </div>`;
   }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new App({ name : 'app'}));
+
+/***/ }),
+
+/***/ "./src/components/NotFoundPage.js":
+/*!****************************************!*\
+  !*** ./src/components/NotFoundPage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NoutFoundPage": () => (/* binding */ NoutFoundPage)
+/* harmony export */ });
+/* harmony import */ var _lib_Component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lib/Component */ "./src/lib/Component.js");
+
+
+class NoutFoundPage extends _lib_Component__WEBPACK_IMPORTED_MODULE_0__["default"]{
+  
+  constructor({ name, state }){
+    super({ name, state })
+  }
+
+  template(){
+    return `
+    <div id="notfoundpage">NOT FOUND PAGE </div>
+    <div>
+      <p>
+        요청하신 페이지를 찾을 수 없습니다. 
+      </p>
+      <button>돌아가기</button>
+    </div>
+    `;
+  }
+
+  setEvent(){
+    this.el.removeEventListener("click", this.firstBonder)
+    this.el.addEventListener("click", this.firstBonder)
+  }
+
+  eventHandler(){
+    return location.replace('/')
+  }
+
+}
+
+
+/***/ }),
+
+/***/ "./src/components/PostEditPage.js":
+/*!****************************************!*\
+  !*** ./src/components/PostEditPage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PostEditPage": () => (/* binding */ PostEditPage),
+/* harmony export */   "Contents": () => (/* binding */ Contents)
+/* harmony export */ });
+/* harmony import */ var _csr_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../csr.js */ "./csr.js");
+/* harmony import */ var _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lib/Component.js */ "./src/lib/Component.js");
+
+
+
+class PostEditPage extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["default"]{
+  
+  child; 
+
+  constructor({ name, state }){
+    super({ name, state })
+    // this.root = root;
+    this.child = [];
+    this.child.push( new Contents({ name : 'contents', state }))
+
+  }
+
+}
+
+
+
+class Contents extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["default"]{
+
+  setEvent(){
+    this.el.querySelector('#form').removeEventListener("submit", this.firstBonder)
+    this.el.querySelector('#form').addEventListener("submit", this.firstBonder)
+  }
+  
+  async eventHandler(e){
+    e.preventDefault();
+
+    let payload = {};
+    e.target.querySelectorAll('input').forEach(ele => {
+      payload[ele.name] = ele.value
+    });
+
+    payload.content = e.target.querySelector('textarea').value;
+
+    // console.log(payload)
+    const result = await fetch( '/post/edit', {
+      method : 'post',
+      headers : { 'content-type' : 'application/json' },
+      body : JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    
+    if(!result) return alert("일시적 오류 발생")
+    
+
+    _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.cacheHandler.clearCache(result);
+    
+    let routerId = _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index 
+    if(location.search === '?new') routerId= result.data[0].id 
+
+    _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setIndex(routerId)
+    _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setPathCur('/post-single');
+
+    history.replaceState(
+      { state : result }, 
+      '', 
+      window.origin + '/post-single?index=' + _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index 
+      )
+
+  
+  }
+  template(){
+    let index, data;
+    if(location.search !== '?new'){
+      index = _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index
+      data = _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state.data.filter(ele => ele.id  === Number(index))[0]
+
+    }
+    else data = null; 
+
+    return `
+      <div id="contents">
+        <form action='/api/post' method='post' id='form'>
+          <fieldset>
+            <p name=${data ? data.id: ""}> 제 목
+              <input 
+              data-action='title'
+              type='text',
+              name = 'title'
+              value=${ data ? data.title : ""}
+              >
+            </p>
+            <p> 작성자
+              <input
+              data-action='writer'
+              type='text'
+              name='writer'
+              value=${ data? data.writer : ""}
+              >
+            </p> 
+            <textarea data-action = 'contents' cols="50" rows="20" name ='content'>${ data ? data.content : ""}</textarea>
+            <input style="display:none;" name=id value = ${ data ? data.id : ""} >
+            <button data-action='submit'>제출</button>
+          </fieldset>
+        </form>
+      </div>
+    `;  
+  }
+  
+}
+{/* 
+<p> 제 목
+<input 
+data-action='title'
+type='text'
+value=${ index ? data[Number(index)].title  : ""}
+>
+</p>
+<p> 작성자
+<input
+data-action='writer'
+type='text'
+value=${ index ? data[Number(index)].writer : ""}
+>
+</p> 
+*/}
+
 
 /***/ }),
 
@@ -265,7 +1008,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Paging": () => (/* binding */ Paging),
 /* harmony export */   "Sorting": () => (/* binding */ Sorting),
 /* harmony export */   "SortButton": () => (/* binding */ SortButton),
-/* harmony export */   "RefreshAll": () => (/* binding */ RefreshAll),
 /* harmony export */   "Postlist": () => (/* binding */ Postlist),
 /* harmony export */   "PostButton": () => (/* binding */ PostButton),
 /* harmony export */   "Pagination": () => (/* binding */ Pagination)
@@ -299,7 +1041,6 @@ class PostListHeader extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["def
     this.child.push( new Paging( { name :'paging', state  }) )
     this.child.push( new Sorting( { name : 'sorting', state }) )
     this.child.push( new SortButton( { name : 'sortbutton', state }) )
-    this.child.push( new RefreshAll({ name :'refreshall', state }) )
 
   }
 
@@ -373,6 +1114,7 @@ class Paging extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
 
   template(){
+    
     const select =  _csr_js__WEBPACK_IMPORTED_MODULE_1__.store ? Number(_csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state.size) :  Number(this.state.size)
     return `
       <div data-component=paging id="paging">
@@ -420,6 +1162,7 @@ class Sorting extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]{
 
 }
 
+
 class SortButton extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]{
 
   setEvent(){
@@ -430,37 +1173,26 @@ class SortButton extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default
   }
   
   eventHandler({ target }){
-    _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.setState({ filter : "", order : 'dsc', name : "",  page : 1, size : 5 })
+    const { action } = target.dataset;
+    if( action === 'all' ){
+      _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.setState({ filter : "", order : 'dsc', name : "",  page : 1, size : 5 })
+    }
+    if( action === 'page' ){
+      location.reload();
+    }
   }
 
   template(){
     return `
-      <button id="sortbutton">초기화</button>
+      <div id="sortbutton">
+        <button data-action = 'all' id="refreshall">초기화</button>
+        <button data-action = 'page' id="refreshpage">새로고침</button>
+      </div>
     `;
   }
 
 }
 
-class RefreshAll extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]{
-
-  setEvent(){
-    
-
-    this.el.removeEventListener("click", this.firstBonder)
-    this.el.addEventListener("click", this.firstBonder)
-  }
-  
-  eventHandler({ target }){
-    window.location.reload()
-  }
-  
-  template(){
-    return `
-      <button id="refreshall">새로고침</button>
-    `;
-  }
-
-}
 
 
 class Postlist extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]{
@@ -479,26 +1211,32 @@ class Postlist extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default"]
     } 
     if( action === 'title' ){
       const { index } = target.parentElement.dataset
-      const url = window.origin + "/post-single" + `?index=${index}`
-      _csr_js__WEBPACK_IMPORTED_MODULE_1__.router.setRouteState(index)
+      const url = window.origin + "/post-single?index=" + index
+      _csr_js__WEBPACK_IMPORTED_MODULE_1__.router.setIndex(index)
       _csr_js__WEBPACK_IMPORTED_MODULE_1__.router.setPathCur('/post-single');
-      history.pushState(state , "", url)
+      history.replaceState({ state : _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state}, '', url)
+      
     }
   }
 
   template(){
     
     const items = _csr_js__WEBPACK_IMPORTED_MODULE_1__.store? _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state.data : this.state.data
-    // console.log('dataaaa===',this.state.data)
     return `
     <div id='postlist'>
+      <ul>
+        <li>글번호</li>
+        <li>제목</li>
+        <li>작성자</li>
+        <li>작성일</li>
+      </ul>
         ${ items.length === 0 ? "" : 
           items.map( (item, idx) => `
-          <ul data-index=${idx}>  
+          <ul data-index=${item.id}>  
             <li id= ${item.id}>${item.id}</li>
             <li data-action='title'>${item.title}</li>
             <li data-action='writer'>${item.writer}</li>
-            <li>${item.date}</li>
+            <li>${item.date.split('T')[0]}</li>
           </ul>`)
           .join("")
         }
@@ -521,11 +1259,9 @@ class PostButton extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default
   }
   
   eventHandler({target}){
-    
-    // const url = location.origin + '/post-edit';
-    // router.setPathCur('/post-edit');
-    
-    // history.pushState(store, "글작성", url)
+    const url = window.origin + "/post-edit" + `?new`
+    history.replaceState(_csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state, "글작성", url)
+    _csr_js__WEBPACK_IMPORTED_MODULE_1__.router.setPathCur('/post-edit');
   }
 
   template(){
@@ -551,15 +1287,13 @@ class Pagination extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default
   
   eventHandler({target}){
     const { action } = target.dataset ;
-    const { page } = _csr_js__WEBPACK_IMPORTED_MODULE_1__.store ? _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state : this.state
+    const { page } = _csr_js__WEBPACK_IMPORTED_MODULE_1__.store ? _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.state : this.state;
+    
     if(action === 'more'){
       _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.setState({ page : Number(page) + 1 })
-      // this.state = { ...this.state, ...{ page : Number(page) + 1 } }
     }
     if(action === 'less'){
       _csr_js__WEBPACK_IMPORTED_MODULE_1__.store.setState({ page : Number(page) -1 })
-      // this.state = { ...this.state, ...{ page : Number(page) - 1 } }
-
     }
   }
 
@@ -581,6 +1315,27 @@ class Pagination extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_0__["default
 
 }
 
+
+// export class RefreshAll extends Component{
+
+//   setEvent(){
+    
+
+//     this.el.removeEventListener("click", this.firstBonder)
+//     this.el.addEventListener("click", this.firstBonder)
+//   }
+  
+//   eventHandler({ target }){
+//     window.location.reload()
+//   }
+  
+//   template(){
+//     return `
+//       <button id="refreshall">새로고침</button>
+//     `;
+//   }
+
+// }
 
 /***/ }),
 
@@ -623,8 +1378,11 @@ class Header extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["default"]{
   
 
   template(){
-    const index = Number(_csr_js__WEBPACK_IMPORTED_MODULE_0__.router.routeState.value)
-    const { data } = this.state 
+    const index  = _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index
+    const data = _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state.data.filter(ele => ele.id  === Number(index))[0]
+    if(data.length === 0 ){
+      _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setPathCur('/not-found');
+    }
     return `
       <header id="header">
         <div>
@@ -634,10 +1392,10 @@ class Header extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["default"]{
           <span>날짜</span>
         </div>
         <div>
-          <span>${ data[index].id }</span>
-          <span>${ data[index].title }</span>
-          <span>${ data[index].writer }</span>
-          <span>${ data[index].date }</span>
+          <span>${ data.id }</span>
+          <span>${ data.title }</span>
+          <span>${ data.writer }</span>
+          <span>${ data.date.split('T')[0] }</span>
         </div>
 
       </header>
@@ -650,11 +1408,12 @@ class Contents extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["default"]
 
 
   template(){
-    const index = Number(_csr_js__WEBPACK_IMPORTED_MODULE_0__.router.routeState.value)
-    const { data } = this.state 
+    const  index  = _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index
+    const data = _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state.data.filter(ele => ele.id  === Number(index))[0]
+
     return `
       <div id="contents">
-        <p>${data[index].content}</p>
+        <p>${data.content}</p>
       </div>
     `;  
   }
@@ -669,19 +1428,37 @@ class BottomButton extends _lib_Component_js__WEBPACK_IMPORTED_MODULE_1__["defau
     this.el.addEventListener("click", this.firstBonder)
   }
   
-  eventHandler({ target }){
+  async eventHandler({ target }){
     const { action } = target.dataset; 
 
     if(action === "edit"){
       // routing to edit-page
-      console.log(this.state)
+      const url = window.origin + "/post-edit"
+      _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setPathCur('/post-edit');
+      history.replaceState({ state : _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state}, '', url)
     }
     if(action === "list"){
-      // routing to list-page
-      console.log(history.state)
-    }
+      const id = _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.cacheHandler.getCacheId();
+      _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setPathCur('/');
+      history.replaceState({ state : _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state }, '', window.origin + '/page?' + id )
+    }   
     if(action === "delete"){
       // delete request 
+      const index  = _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.index
+      const id = _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.state.data.filter(ele => ele.id  === Number(index))[0].id
+
+      const result = await fetch(
+        `/post/delete?id=${id}`, 
+        { method : 'delete',}
+      ).then(result => result.json());
+      
+      if(result){ 
+        _csr_js__WEBPACK_IMPORTED_MODULE_0__.store.cacheHandler.clearCache(result);
+        _csr_js__WEBPACK_IMPORTED_MODULE_0__.router.setPathCur('/');
+        history.replaceState({}, '', window.origin);
+      }
+
+
     }
   }
 
@@ -728,7 +1505,8 @@ class Component{
   }
   
   setState(state){
-    this.state = state;
+    this.state = state; // for serverside rendering
+    // console.log('=========================this.state, this.curPos',this.state, this.curPos)
     if(this.components.length > 0){
       this.components[this.curPos].setState(state)
     }
@@ -739,6 +1517,7 @@ class Component{
   setRoot(root){
     if(!this.root)  this.root = root;
     this.el =  this.root.querySelector(`#${this.name}`);
+    // console.log("setRooooot=", this.root, this.el, this.name)
     
     if(this.components.length > 0){
       this.components[this.curPos].setRoot(root);
@@ -747,12 +1526,11 @@ class Component{
     if(this.child.length > 0){
       this.child.map(node => node.setRoot(root));
     }
-    
+    // console.log(root, 'setRoot', this.el)
     this.setEvent();
   }
   
   setEvent(){
-
   }
 
   eventHandler(){
@@ -777,7 +1555,6 @@ class Component{
 
     }
     // console.log('this app name=', this.name, this.state, renderHtml)
-
     return `
       <div id=${this.name}>
         ${renderHtml}
@@ -787,46 +1564,24 @@ class Component{
   }
   
   render(){
-    const oldOne = this.el.innerHtml;
+    // console.log(this.root)
+    // if(!this.el) this.el = this.root.querySelector('#'+ this.name) 
+    // console.log(this.root)
+    // const oldOne = this.el.innerHTML;
     const newOne = this.template();
-    
-    // Needs
-    // some diff logic to compare two
-    // console.log("rendering here =", this.name, this.el)
-    this.el.innerHTML= newOne //(should be oldOne);
+  // Needs
+    // console.log(newOne)
+    // some diff logic to compare of two
+ 
+    this.el.innerHTML= newOne //(should be oldOne after diff);
     requestAnimationFrame(()=> this.setRoot())
+      // console.log("rendering here =", this.name, this.el)
 
   }
 
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Component);
-
-/***/ }),
-
-/***/ "./src/lib/Data.js":
-/*!*************************!*\
-  !*** ./src/lib/Data.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "totData": () => (/* binding */ totData)
-/* harmony export */ });
-const  setData = (dataLength = 30) => {
-  return new Array(dataLength).fill(0).map((ele, idx) => {
-    return {
-      id : idx+1, 
-      title : `title${idx+1}`,
-      writer : `name${idx+1}`,
-      content : `content${idx+1}`,
-      date : `2022-1-${idx+1}`
-    }
-  })
-}
-
-const totData = setData(200);
 
 /***/ }),
 
@@ -842,13 +1597,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 class Router {
   
-  routes; base; routeState; root; app; cur;
+  routes; base; index; root; app; cur; eventBounder;
   
   constructor(){
 
     this.cur = 0;
     this.routeState = { value : "" };
-    // this.setup();
+
   }
   
   subscribe(app){
@@ -860,10 +1615,14 @@ class Router {
   }
 
   setRoot(root){
-    this.root = root 
-
+    if(!this.root && !root) this.root = document.querySelector('#root')
+    if(!this.root) this.root = root 
+    // console.log(this.root)
     try{
-      this.app.setRoot(this.root)
+      this.app.setRoot(this.root);
+      this.app.onLoad();
+      // this.app.setEvent();
+
     }catch(err){
       if(err instanceof TypeError){ 
         return this.serverRender()
@@ -871,22 +1630,28 @@ class Router {
     }
   }
 
-  setRouteState(newVal){
-    this.routeState = { value : newVal}
+
+  setIndex(index){
+    this.index =Number(index)
   }
   
-  setPathCur(newCur){
+  setPathCur(newCur, serverRender=false){
+    // console.log('newCur========', newCur)
+    newCur = newCur === '/page' ? '/' : newCur
     this.cur = this.routes.filter( 
       route => route.path === newCur )[0].comPosition;
+    
+    this.app.curPos = this.cur; 
 
-    this.app.curPos = this.cur;
-    this.templateRender();
-    this.setRoot();
+    if(serverRender) return 
+    this.templateRender()
+
   }
 
   templateRender(){
-    let html = this.app.template();
-    this.root.innerHTML = html;
+    this.app.innerHTML = this.app.template();
+    this.root.innerHTML = this.app.innerHTML;
+    this.setRoot(this.root)
   }
   
   serverRender(){
@@ -920,17 +1685,23 @@ class Store {
     this.app =app;
   }
 
-  initState(initial){
+  initState(initial, server=false){
     this.state = initial;
+    if(server) return 
+    // console.log(this.state)
+    // history.pushState({ state : this.state }, null, location.origin + '/page?' + this.cacheHandler.getCacheId())    
+
   }
 
   setState(newState){
     this.state = { ...this.state, ...newState };
+    // console.log(this.cacheHandler.getCacheId())
+    history.pushState({ state : this.state }, null, location.origin + '/page?' + this.cacheHandler.getCacheId())    
+    // console.log(history)
     this.updateView();
-    const { filter, name, order, page, size, total }  = this.state
-    const url = `/page?filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
-    console.log('after state change all == url to change==', url)
-    history.pushState({ state : this.state }, null, location.origin + url)    
+    // const { filter, name, order, page, size, total }  = this.state
+    // const url = `/page?filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
+    // console.log('after setState=', this.state, location.origin + '/page?' + this.cacheHandler.getCacheId())
   }
 
   updateView(){
@@ -939,6 +1710,7 @@ class Store {
   }
 
   renderAll(){
+    // console.log('render All works')
     this.app.render();
   }
 
@@ -966,7 +1738,7 @@ class Store {
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
+/******/ 			id: moduleId,
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
@@ -979,6 +1751,18 @@ class Store {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports

@@ -1,5 +1,5 @@
 import Component from '../lib/Component.js'
-
+import viewRouter from './router';
 export class PostSinglePage extends Component{
   
   child; 
@@ -21,22 +21,25 @@ export class Header extends Component{
   
 
   template(){
-    const index = this.index || 0
-    console.log('===============adfasdf',this.name, this.state)
-    const { data } = this.state 
+    // console.log(viewRouter, this.state)
+
+    const index = viewRouter.index 
+    const data = this.state.data.filter(ele => ele.id  === Number(index))[0]
+
+    if( !data || data.length === 0 ) return false
     return `
       <header id="header">
-        <div>
+        <div class='single-header'>
           <span>글번호</span>
           <span>제목</span>
           <span>작성자</span>
           <span>날짜</span>
         </div>
-        <div>
-          <span>${ data[index].id }</span>
-          <span>${ data[index].title }</span>
-          <span>${ data[index].writer }</span>
-          <span>${ data[index].date }</span>
+        <div class='single-content'>
+          <span>${ data.id }</span>
+          <span>${ data.title }</span>
+          <span>${ data.writer }</span>
+          <span>${ data.date.split('T')[0] }</span>
         </div>
 
       </header>
@@ -49,11 +52,12 @@ export class Contents extends Component{
 
 
   template(){
-    const index = this.index || 0
-    const { data } = this.state 
+    const index = viewRouter.index 
+    const data = this.state.data.filter(ele => ele.id  === Number(index))[0]
+
     return `
       <div id="contents">
-        <p>${data[index].content}</p>
+        <textarea cols="50" rows="20" name ='content' readonly>${data.content}</textarea>
       </div>
     `;  
   }
@@ -67,8 +71,8 @@ export class BottomButton extends Component{
   template(){
     return `
       <div id="bottombutton">
+      <button data-action="list">목록</button>
         <button data-action="edit">수정</button>
-        <button data-action="list">목록</button>
         <button data-action="delete">삭제</button>
       </div>
     `;

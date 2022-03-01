@@ -1,0 +1,209 @@
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>window.state={"data":[{"id":141,"title":"title141","writer":"name141","content":"content141","date":"2021-5-21","index":60},{"id":140,"title":"title140","writer":"name140","content":"content140","date":"2021-5-20","index":61},{"id":139,"title":"title139","writer":"name139","content":"content139","date":"2021-5-19","index":62},{"id":138,"title":"title138","writer":"name138","content":"content138","date":"2021-5-18","index":63},{"id":137,"title":"title137","writer":"name137","content":"content137","date":"2021-5-17","index":64},{"id":136,"title":"title136","writer":"name136","content":"content136","date":"2021-5-16","index":65},{"id":135,"title":"title135","writer":"name135","content":"content135","date":"2021-5-15","index":66},{"id":134,"title":"title134","writer":"name134","content":"content134","date":"2021-5-14","index":67},{"id":133,"title":"title133","writer":"name133","content":"content133","date":"2021-5-13","index":68},{"id":132,"title":"title132","writer":"name132","content":"content132","date":"2021-5-12","index":69},{"id":131,"title":"title131","writer":"name131","content":"content131","date":"2021-5-11","index":70},{"id":130,"title":"title130","writer":"name130","content":"content130","date":"2021-5-10","index":71},{"id":129,"title":"title129","writer":"name129","content":"content129","date":"2021-5-9","index":72},{"id":128,"title":"title128","writer":"name128","content":"content128","date":"2021-5-8","index":73},{"id":127,"title":"title127","writer":"name127","content":"content127","date":"2021-5-7","index":74},{"id":126,"title":"title126","writer":"name126","content":"content126","date":"2021-5-6","index":75},{"id":125,"title":"title125","writer":"name125","content":"content125","date":"2021-5-5","index":76},{"id":124,"title":"title124","writer":"name124","content":"content124","date":"2021-5-4","index":77},{"id":123,"title":"title123","writer":"name123","content":"content123","date":"2021-5-3","index":78},{"id":122,"title":"title122","writer":"name122","content":"content122","date":"2021-5-2","index":79}],"page":"4","size":"20","order":"dsc","filter":"","name":"","total":201,"index":0}</script>
+</head>
+<body>
+  <div id='root'>
+    
+      <div id=app>
+        
+      <div id=postlistpage>
+        
+      <div id=postlistheader>
+        
+    <div data-component="search" id="search">
+      <input 
+        data-action='searchInput' 
+        placeholder="search" 
+        type="text" 
+        value=>
+      <button data-action='searchBtn'>검색</button>
+    </div>
+  
+      <div data-component=paging id="paging">
+        <label for="pagination" value=20>페이지</label>
+          <select data-action ="page">
+          <option value=5 >5</option>
+          <option value=10 >10</option>
+          <option value=20 selected>20</option>
+        </select>
+      </div>
+    
+    <div data-component='sorting' id="sorting">
+      <label for="sorting">날짜정렬</label>
+      <select data-action="order">
+        <option 
+            name='order' value="dsc" 
+            selected>최신</option>
+        <option 
+            name='order' value="asc"
+            >예전</option>
+      </select>
+    </div>
+      <div id="sortbutton">
+        <button data-action = 'all' id="refreshall">초기화</button>
+        <button data-action = 'page' id="refreshpage">새로고침</button>
+      </div>
+    
+      </div>
+    
+    
+      <div id='postlist'>
+        <ul>
+          <li>글번호</li>
+          <li data-action='title'>제목</li>
+          <li>작성자</li>
+          <li>작성일</li>
+        </ul>
+        
+          <ul data-index=141>  
+            <li id= 141>141</li>
+            <li data-action='title'>title141</li>
+            <li data-action='writer'  >name141</li>
+            <li>2021-5-21</li>
+          </ul>
+          <ul data-index=140>  
+            <li id= 140>140</li>
+            <li data-action='title'>title140</li>
+            <li data-action='writer'  >name140</li>
+            <li>2021-5-20</li>
+          </ul>
+          <ul data-index=139>  
+            <li id= 139>139</li>
+            <li data-action='title'>title139</li>
+            <li data-action='writer'  >name139</li>
+            <li>2021-5-19</li>
+          </ul>
+          <ul data-index=138>  
+            <li id= 138>138</li>
+            <li data-action='title'>title138</li>
+            <li data-action='writer'  >name138</li>
+            <li>2021-5-18</li>
+          </ul>
+          <ul data-index=137>  
+            <li id= 137>137</li>
+            <li data-action='title'>title137</li>
+            <li data-action='writer'  >name137</li>
+            <li>2021-5-17</li>
+          </ul>
+          <ul data-index=136>  
+            <li id= 136>136</li>
+            <li data-action='title'>title136</li>
+            <li data-action='writer'  >name136</li>
+            <li>2021-5-16</li>
+          </ul>
+          <ul data-index=135>  
+            <li id= 135>135</li>
+            <li data-action='title'>title135</li>
+            <li data-action='writer'  >name135</li>
+            <li>2021-5-15</li>
+          </ul>
+          <ul data-index=134>  
+            <li id= 134>134</li>
+            <li data-action='title'>title134</li>
+            <li data-action='writer'  >name134</li>
+            <li>2021-5-14</li>
+          </ul>
+          <ul data-index=133>  
+            <li id= 133>133</li>
+            <li data-action='title'>title133</li>
+            <li data-action='writer'  >name133</li>
+            <li>2021-5-13</li>
+          </ul>
+          <ul data-index=132>  
+            <li id= 132>132</li>
+            <li data-action='title'>title132</li>
+            <li data-action='writer'  >name132</li>
+            <li>2021-5-12</li>
+          </ul>
+          <ul data-index=131>  
+            <li id= 131>131</li>
+            <li data-action='title'>title131</li>
+            <li data-action='writer'  >name131</li>
+            <li>2021-5-11</li>
+          </ul>
+          <ul data-index=130>  
+            <li id= 130>130</li>
+            <li data-action='title'>title130</li>
+            <li data-action='writer'  >name130</li>
+            <li>2021-5-10</li>
+          </ul>
+          <ul data-index=129>  
+            <li id= 129>129</li>
+            <li data-action='title'>title129</li>
+            <li data-action='writer'  >name129</li>
+            <li>2021-5-9</li>
+          </ul>
+          <ul data-index=128>  
+            <li id= 128>128</li>
+            <li data-action='title'>title128</li>
+            <li data-action='writer'  >name128</li>
+            <li>2021-5-8</li>
+          </ul>
+          <ul data-index=127>  
+            <li id= 127>127</li>
+            <li data-action='title'>title127</li>
+            <li data-action='writer'  >name127</li>
+            <li>2021-5-7</li>
+          </ul>
+          <ul data-index=126>  
+            <li id= 126>126</li>
+            <li data-action='title'>title126</li>
+            <li data-action='writer'  >name126</li>
+            <li>2021-5-6</li>
+          </ul>
+          <ul data-index=125>  
+            <li id= 125>125</li>
+            <li data-action='title'>title125</li>
+            <li data-action='writer'  >name125</li>
+            <li>2021-5-5</li>
+          </ul>
+          <ul data-index=124>  
+            <li id= 124>124</li>
+            <li data-action='title'>title124</li>
+            <li data-action='writer'  >name124</li>
+            <li>2021-5-4</li>
+          </ul>
+          <ul data-index=123>  
+            <li id= 123>123</li>
+            <li data-action='title'>title123</li>
+            <li data-action='writer'  >name123</li>
+            <li>2021-5-3</li>
+          </ul>
+          <ul data-index=122>  
+            <li id= 122>122</li>
+            <li data-action='title'>title122</li>
+            <li data-action='writer'  >name122</li>
+            <li>2021-5-2</li>
+          </ul>
+      </div>
+      <div id=pagebutton>
+        
+      <div id=pagination-button>
+      
+      <button data-action="less">이전</button>
+      <button data-action="more">더보기</button>
+      
+      </div>
+    
+      <div id=postbutton>
+        <button>글 작성</button>
+      </div>
+    
+      </div>
+    
+      </div>
+    
+      </div>
+     
+  </div>
+  <script src="./csr.js"></script>
+</body>
+</html>
+  

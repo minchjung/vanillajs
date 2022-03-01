@@ -22,21 +22,24 @@ export class Header extends Component{
   
 
   template(){
-    const index = Number(router.routeState.value)
-    const { data } = store.state 
+    const index  = router.index
+    const data = store.state.data.filter(ele => ele.id  === Number(index))[0]
+    if(data.length === 0 ){
+      router.setPathCur('/not-found');
+    }
     return `
       <header id="header">
-        <div>
+        <div class='single-header'>
           <span>글번호</span>
           <span>제목</span>
           <span>작성자</span>
           <span>날짜</span>
         </div>
-        <div>
-          <span>${ data[index].id }</span>
-          <span>${ data[index].title }</span>
-          <span>${ data[index].writer }</span>
-          <span>${ data[index].date }</span>
+        <div class='single-content'>
+          <span>${ data.id }</span>
+          <span>${ data.title }</span>
+          <span>${ data.writer }</span>
+          <span>${ data.date.split('T')[0] }</span>
         </div>
 
       </header>
@@ -49,11 +52,12 @@ export class Contents extends Component{
 
 
   template(){
-    const index = Number(router.routeState.value)
-    const { data } = store.state
+    const  index  = router.index
+    const data = store.state.data.filter(ele => ele.id  === Number(index))[0]
+
     return `
       <div id="contents">
-        <p>${data[index].content}</p>
+        <textarea cols="50" rows="20" name ='content' readonly>${data.content}</textarea>
       </div>
     `;  
   }
@@ -68,26 +72,38 @@ export class BottomButton extends Component{
     this.el.addEventListener("click", this.firstBonder)
   }
   
-  eventHandler({ target }){
+  async eventHandler({ target }){
     const { action } = target.dataset; 
 
     if(action === "edit"){
       // routing to edit-page
-      const index = Number(router.routeState.value)
-
-      const url = window.origin + "/post-edit" + `?index=${index}`
-      router.setRouteState(index)
+      const url = window.origin + "/post-edit"
       router.setPathCur('/post-edit');
-      history.pushState({} , "", url)
+      history.replaceState({ state : store.state}, '', url)
     }
     if(action === "list"){
-      // routing to list-page
+      const id = store.cacheHandler.getCacheId();
       router.setPathCur('/');
-      history.back();
-    }
+      history.replaceState({ state : store.state }, '', window.origin + '/page?' + id )
+    }   
     if(action === "delete"){
       // delete request 
-      console.log(action)
+      const index  = router.index
+      const id = store.state.data.filter(ele => ele.id  === Number(index))[0].id
+
+      const result = await fetch(
+        `/post/delete?id=${id}`, 
+        { method : 'delete',}
+      ).then(result => result.json());
+      
+      if(result){ 
+        store.cacheHandler.clearCache(result);
+        router.setPathCur('/');
+        history.replaceState({}, '', window.origin);
+        alert('게시글이 삭제 되었습니다')
+      }
+
+
     }
   }
 
@@ -95,8 +111,8 @@ export class BottomButton extends Component{
   template(){
     return `
       <div id="bottombutton">
+      <button data-action="list">목록</button>
         <button data-action="edit">수정</button>
-        <button data-action="list">목록</button>
         <button data-action="delete">삭제</button>
       </div>
     `;

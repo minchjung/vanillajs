@@ -8,8 +8,7 @@ export class PostListPage extends Component{
     this.child = [] 
     this.child.push(new PostListHeader({ name : 'postlistheader', state }))
     this.child.push(new Postlist({ name : 'postlist' , state }))
-    this.child.push(new Pagination({ name : 'pagination', state }))
-    this.child.push(new PostButton({ name : 'postbutton' , state }))
+    this.child.push(new PageButton({ name : 'pagebutton', state }))
   }
   
 }
@@ -25,7 +24,6 @@ export class PostListHeader extends Component{
     this.child.push( new Paging( { name :'paging', state  }) )
     this.child.push( new Sorting( { name : 'sorting', state }) )
     this.child.push( new SortButton( { name : 'sortbutton', state }) )
-    this.child.push( new RefreshAll({ name :'refreshall', state }) )
 
   }
 
@@ -99,6 +97,7 @@ export class Paging extends Component {
   }
 
   template(){
+    
     const select =  store ? Number(store.state.size) :  Number(this.state.size)
     return `
       <div data-component=paging id="paging">
@@ -146,6 +145,7 @@ export class Sorting extends Component{
 
 }
 
+
 export class SortButton extends Component{
 
   setEvent(){
@@ -156,37 +156,26 @@ export class SortButton extends Component{
   }
   
   eventHandler({ target }){
-    store.setState({ filter : "", order : 'dsc', name : "",  page : 1, size : 5 })
+    const { action } = target.dataset;
+    if( action === 'all' ){
+      store.setState({ filter : "", order : 'dsc', name : "",  page : 1, size : 5 })
+    }
+    if( action === 'page' ){
+      location.reload();
+    }
   }
 
   template(){
     return `
-      <button id="sortbutton">초기화</button>
+      <div id="sortbutton">
+        <button data-action = 'all' id="refreshall">초기화</button>
+        <button data-action = 'page' id="refreshpage">새로고침</button>
+      </div>
     `;
   }
 
 }
 
-export class RefreshAll extends Component{
-
-  setEvent(){
-    
-
-    this.el.removeEventListener("click", this.firstBonder)
-    this.el.addEventListener("click", this.firstBonder)
-  }
-  
-  eventHandler({ target }){
-    window.location.reload()
-  }
-  
-  template(){
-    return `
-      <button id="refreshall">새로고침</button>
-    `;
-  }
-
-}
 
 
 export class Postlist extends Component{
@@ -205,27 +194,33 @@ export class Postlist extends Component{
     } 
     if( action === 'title' ){
       const { index } = target.parentElement.dataset
-      const url = window.origin + "/post-single" + `?index=${index}`
-      router.setRouteState(index)
+      const url = window.origin + "/post-single?index=" + index
+      router.setIndex(index)
       router.setPathCur('/post-single');
-      store.setState(store.state)
-      router.setRoot();
+      history.replaceState({ state : store.state}, '', url)
+      
     }
   }
 
   template(){
     
-    const items = store? store.state.data : this.state.data
-    // console.log('dataaaa===',this.state.data)
+    const items = store.state.data;
+    const classOn = store.state.name !== '' ?`class='writer-on'` : "" 
     return `
     <div id='postlist'>
+      <ul>
+        <li>글번호</li>
+        <li data-action='title'>제목</li>
+        <li>작성자</li>
+        <li>작성일</li>
+      </ul>
         ${ items.length === 0 ? "" : 
           items.map( (item, idx) => `
-          <ul data-index=${idx}>  
+          <ul data-index=${item.id}>  
             <li id= ${item.id}>${item.id}</li>
             <li data-action='title'>${item.title}</li>
-            <li data-action='writer'>${item.writer}</li>
-            <li>${item.date}</li>
+            <li data-action='writer' ${classOn} >${item.writer}</li>
+            <li>${item.date.split('T')[0]}</li>
           </ul>`)
           .join("")
         }
@@ -239,25 +234,35 @@ export class Postlist extends Component{
   }
 }
 
+class PageButton extends Component{
+
+  constructor({ name, state }){
+    super({ name, state });
+    this.child = []; 
+    this.child.push( new Pagination({ name :'pagination-button', state }) );
+    this.child.push( new PostButton({ name :'postbutton', state }) );
+  }
+
+}
+
 export class PostButton extends Component{
 
   setEvent(){
 
-    this.el.removeEventListener("click", this.eventHandler)
-    this.el.addEventListener("click", this.eventHandler)
+    this.el.removeEventListener("click", this.firstBonder)
+    this.el.addEventListener("click", this.firstBonder)
   }
   
   eventHandler({target}){
     const url = window.origin + "/post-edit" + `?new`
-    router.setRouteState(null)
+    history.replaceState(store.state, "글작성", url)
     router.setPathCur('/post-edit');
-    history.pushState(store.state, "글작성", url)
   }
 
   template(){
     return `
       <div id=postbutton>
-        <button>작성</button>
+        <button>글 작성</button>
       </div>
     `
   }
@@ -277,15 +282,13 @@ export class Pagination extends Component{
   
   eventHandler({target}){
     const { action } = target.dataset ;
-    const { page } = store ? store.state : this.state
+    const { page } = store ? store.state : this.state;
+    
     if(action === 'more'){
       store.setState({ page : Number(page) + 1 })
-      // this.state = { ...this.state, ...{ page : Number(page) + 1 } }
     }
     if(action === 'less'){
       store.setState({ page : Number(page) -1 })
-      // this.state = { ...this.state, ...{ page : Number(page) - 1 } }
-
     }
   }
 
@@ -296,7 +299,7 @@ export class Pagination extends Component{
     // console.log('postListPage============', this.state)
 
     return `
-      <div id=pagination>
+      <div id=pagination-button>
       ${ Number(total) === 0 ? `<span class="none-display">"게시글이 존재 하지 않습니다."</span>` : ""}
       ${ less ? `<button data-action="less">이전</button>` : "" }
       ${ more ? `<button data-action="more">더보기</button>` : "" }
@@ -306,3 +309,25 @@ export class Pagination extends Component{
   }
 
 }
+
+
+// export class RefreshAll extends Component{
+
+//   setEvent(){
+    
+
+//     this.el.removeEventListener("click", this.firstBonder)
+//     this.el.addEventListener("click", this.firstBonder)
+//   }
+  
+//   eventHandler({ target }){
+//     window.location.reload()
+//   }
+  
+//   template(){
+//     return `
+//       <button id="refreshall">새로고침</button>
+//     `;
+//   }
+
+// }

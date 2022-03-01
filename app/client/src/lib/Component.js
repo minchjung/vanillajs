@@ -27,6 +27,7 @@ class Component{
   setRoot(root){
     if(!this.root)  this.root = root;
     this.el =  this.root.querySelector(`#${this.name}`);
+    // console.log("setRooooot=", this.root, this.el, this.name)
     
     if(this.components.length > 0){
       this.components[this.curPos].setRoot(root);
@@ -35,12 +36,11 @@ class Component{
     if(this.child.length > 0){
       this.child.map(node => node.setRoot(root));
     }
-    
+    // console.log(root, 'setRoot', this.el)
     this.setEvent();
   }
   
   setEvent(){
-
   }
 
   eventHandler(){
@@ -65,7 +65,6 @@ class Component{
 
     }
     // console.log('this app name=', this.name, this.state, renderHtml)
-
     return `
       <div id=${this.name}>
         ${renderHtml}
@@ -75,14 +74,18 @@ class Component{
   }
   
   render(){
-    const oldOne = this.el.innerHtml;
-    const newOne = this.template();
-    
-    // Needs
+    // console.log(this.root)
+    // if(!this.el) this.el = this.root.querySelector('#'+ this.name) 
+    // console.log(this.root)
+    // const oldOne = this.el.innerHTML;
+    // const newOne = this.template();
+  // Needs
+    // console.log(newOne)
     // some diff logic to compare of two
-    // console.log("rendering here =", this.name, this.el)
-    this.el.innerHTML= newOne //(should be oldOne after diff);
+ 
+    this.el.innerHTML= this.template() //(should be oldOne after diff);
     requestAnimationFrame(()=> this.setRoot())
+      // console.log("rendering here =", this.name, this.el)
 
   }
 

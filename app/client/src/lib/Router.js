@@ -1,6 +1,6 @@
 class Router {
   
-  routes; base; routeState; root; app; cur; eventBounder;
+  routes; base; index; root; app; cur; eventBounder;
   
   constructor(){
 
@@ -23,7 +23,8 @@ class Router {
     // console.log(this.root)
     try{
       this.app.setRoot(this.root);
-      this.app.onLoad()
+      this.app.onLoad();
+      // this.app.setEvent();
 
     }catch(err){
       if(err instanceof TypeError){ 
@@ -33,11 +34,11 @@ class Router {
   }
 
 
-  setRouteState(newVal){
-    this.routeState = { value : newVal}
+  setIndex(index){
+    this.index =Number(index)
   }
   
-  setPathCur(newCur){
+  setPathCur(newCur, serverRender=false){
     // console.log('newCur========', newCur)
     newCur = newCur === '/page' ? '/' : newCur
     this.cur = this.routes.filter( 
@@ -45,11 +46,14 @@ class Router {
     
     this.app.curPos = this.cur; 
 
+    if(serverRender) return 
+    this.templateRender()
+
   }
 
   templateRender(){
-    let html = this.app.template();
-    this.root.innerHTML = html;
+    this.root.innerHTML = this.app.template();
+    this.setRoot(this.root)
   }
   
   serverRender(){

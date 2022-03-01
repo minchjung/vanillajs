@@ -1,20 +1,11 @@
 import { actionHandler } from './src/action.js'
 import Store from './src/lib/Store.js';
-import { totData } from './src/lib/Data.js';
 import app from './src/components/App.js'
 import Router from './src/lib/Router.js';
+import styles from './styles.css'
 
-const initialState = {
-  data : totData.slice().reverse().slice(0,5),
-  page : 1,
-  size : 5, 
-  order : 'dsc',
-  filter : '',
-  name : '',
-  total : totData.length,
-}
 
-const state = globalThis.state || initialState; 
+const state = globalThis.state 
 const store = new Store();
 store.subscribe(app);
 
@@ -42,12 +33,15 @@ router.setRoutes(
     { path : '/post-edit',
       comPosition : 2
     },
+    { 
+      path : '/nout-found',
+      comPosition : 3
+    }
   ] 
 )
 
+router.setPathCur(location.pathname, true);
+router.setIndex(location.search.split('=')[1])
 router.setRoot(document.querySelector('#root') );
-// router.setPathCur(location.pathname);
 
-
-// console.log(store, router)
 export { store, router }

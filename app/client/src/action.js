@@ -30,19 +30,18 @@ export const actionHandler = {
     },
     
     getCacheId(state = this.state){
-      // console.log( this.state)
       const { filter, name, order, page, size, total } = state;
-      const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}&total=${total}`
+      const id = `filter=${filter}&name=${name}&order=${order}&page=${page}&size=${size}`
       return id
     },
     
-    hasCacheChecker(){
+    hasCacheChecker(state = this.state){
       // check cashdata with current state(updated)
-      const id = this.cacheHandler.getCacheId()
+      const id = this.cacheHandler.getCacheId(state)
       const cached = JSON.parse(localStorage.getItem('cached')) || [];
-      // console.log(cached)
       // filter with id and range
       let filtered = cached.filter(ele => ele.id === id)
+
       const bool = filtered.length > 0 
       // console.log(filtered, bool)
       return { 
@@ -52,15 +51,15 @@ export const actionHandler = {
       
     },
     
-    async searchCache(state= this.state){
+    async searchCache(state= this.state, updateView=false){
     
       // cache invalid => requestApi or get data from it
-      const { isValid, cachingData } = this.cacheHandler.hasCacheChecker(state= this.state);
+      const { isValid, cachingData } = this.cacheHandler.hasCacheChecker(state);
       if( !isValid ){
         // after api, maunally render as it returns  async result
         const result = await this.cacheHandler.updateCacheByApi()
         if(result ){
-          this.state = {...this.state, ...{ data : result.data},  ...{ total : result.total }}
+          this.state = {...state, ...{ data : result.data},  ...{ total : result.total }}
           this.renderAll()
         }
         else{
@@ -69,13 +68,25 @@ export const actionHandler = {
         } 
       } 
       else{ // cache is valid to use
-        console.log("no need to req api for cache but filtered from cache state =", cachingData)
+        // console.log("no need to req api ")
         // state update by cache & server side store, too
-        this.state = {...this.state, ...{ data : cachingData[0].data , total : cachingData[0].total }}
+        this.state = {...state, ...{ data : cachingData[0].data , total : cachingData[0].total }}
         this.cacheHandler.updateStateByApi() 
+      }
+  
+      if(updateView){
+        // console.log('updateView==', state)
+        this.renderAll()
       }
       return 
       
+    },
+
+    clearCache(initState){
+      localStorage.removeItem('cached');
+      if(initState) this.initState(initState);
+
+      this.cacheHandler.setCache();
     },
         
     async updateCacheByApi(){
@@ -91,7 +102,6 @@ export const actionHandler = {
         let cached = JSON.parse(localStorage.getItem('cached'))
         if(!cached || cached.length === 0) cached = []   
         
-        // console.log(result)
         cached.push(result)
         localStorage.setItem('cached', JSON.stringify(cached))
         // window.location.href('http://localhost:8080/page?'+this.getCacheId())

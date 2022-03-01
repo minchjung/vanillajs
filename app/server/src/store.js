@@ -1,9 +1,8 @@
-const { initialState } = require("./Data");
 
 class ServerStore{
   state; 
   constructor(state){
-    this.state = state;
+    this.state = state ;
   }
   setState(newState){
     this.state = { ...this.state, ...newState }
@@ -12,4 +11,4 @@ class ServerStore{
 
 
 
-module.exports = new ServerStore(initialState);
+module.exports = { store  : new ServerStore()} ;

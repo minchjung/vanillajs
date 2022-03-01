@@ -7,8 +7,7 @@ export class PostListPage extends Component{
     this.child = [] 
     this.child.push(new PostListHeader({ name : 'postlistheader', state }))
     this.child.push(new Postlist({ name : 'postlist' , state }))
-    this.child.push(new Pagination({ name : 'pagination', state }))
-    this.child.push(new PostButton({ name : 'postbutton' , state }))
+    this.child.push(new PageButton({ name : 'pagebutton', state }))
   }
   
 }
@@ -24,7 +23,6 @@ export class PostListHeader extends Component{
     this.child.push( new Paging( { name :'paging', state  }) )
     this.child.push( new Sorting( { name : 'sorting', state }) )
     this.child.push( new SortButton( { name : 'sortbutton', state }) )
-    this.child.push( new RefreshAll({ name :'refreshall', state }) )
 
   }
 
@@ -94,17 +92,10 @@ export class SortButton extends Component{
 
   template(){
     return `
-      <button id="sortbutton">초기화</button>
-    `;
-  }
-
-}
-
-export class RefreshAll extends Component{
-
-  template(){
-    return `
-      <button id="refreshall">새로고침</button>
+      <div id="sortbutton">
+        <button data-action = 'all' id="refreshall">초기화</button>
+        <button data-action = 'page' id="refreshpage">새로고침</button>
+      </div>
     `;
   }
 
@@ -117,16 +108,24 @@ export class Postlist extends Component{
   template(){
     
     const items = this.state.data
-    // console.log('dataaaa===',this.state.data)
+    const classOn = this.state.name !== '' ?`class='writer-on'` : "" 
+
     return `
-    <div id='postlist'>
+    
+      <div id='postlist'>
+        <ul>
+          <li>글번호</li>
+          <li data-action='title'>제목</li>
+          <li>작성자</li>
+          <li>작성일</li>
+        </ul>
         ${ items.length === 0 ? "" : 
           items.map( (item, idx) => `
-          <ul data-index=${idx}>  
+          <ul data-index=${item.id}>  
             <li id= ${item.id}>${item.id}</li>
             <li data-action='title'>${item.title}</li>
-            <li data-action='writer'>${item.writer}</li>
-            <li>${item.date}</li>
+            <li data-action='writer' ${classOn} >${item.writer}</li>
+            <li>${item.date.split('T')[0]}</li>
           </ul>`)
           .join("")
         }
@@ -134,12 +133,23 @@ export class Postlist extends Component{
   }
 }
 
+class PageButton extends Component{
+
+  constructor({ name, state }){
+    super({ name, state });
+    this.child = []; 
+    this.child.push( new Pagination({ name :'pagination-button', state }) );
+    this.child.push( new PostButton({ name :'postbutton', state }) );
+  }
+
+}
+
 export class PostButton extends Component{
 
   template(){
     return `
       <div id=postbutton>
-        <button>작성</button>
+        <button>글 작성</button>
       </div>
     `
   }
@@ -158,7 +168,7 @@ export class Pagination extends Component{
     // console.log('postListPage============', this.state)
 
     return `
-      <div id=pagination>
+      <div id=pagination-button>
       ${ Number(total) === 0 ? `<span class="none-display">"게시글이 존재 하지 않습니다."</span>` : ""}
       ${ less ? `<button data-action="less">이전</button>` : "" }
       ${ more ? `<button data-action="more">더보기</button>` : "" }
