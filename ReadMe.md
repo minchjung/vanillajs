@@ -1,4 +1,6 @@
 Creating SSR and CSR 
+# Getting started  
+[Start](https://github.com/minchjung/vanillajs-porject)
 
 # 1. 순수 자바스크립트로 CSR 프레임워크 구현 (React or Vue.js) 
 1. 컴포넌트 설계 
