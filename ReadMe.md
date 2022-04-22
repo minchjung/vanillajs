@@ -1,5 +1,7 @@
 Creating SSR and CSR 
-# Getting started  
+# Getting started
+App is here below 
+you might want to download and start 
 [Start](https://github.com/minchjung/vanillajs-porject)
 
 # 1. 순수 자바스크립트로 CSR 프레임워크 구현 (React or Vue.js) 
